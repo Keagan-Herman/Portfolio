@@ -6,8 +6,8 @@
   --font-dm-mono: var(--font-dm-mono);
 
   --color-terracotta: #c8381a;
-  --color-paper: #fdfcfb;
-  --color-ink: #1a1a1a;
+  --color-paper: #f4efe4;
+  --color-ink: #111009;
 }
 
 :root {
@@ -46,9 +46,13 @@ h1, h2, h3, .hollow-text {
 
 /* Background Ruled Lines */
 .ruled-background {
-  background-image: linear-gradient(var(--foreground) 1px, transparent 1px);
-  background-size: 100% 4rem;
-  background-attachment: local;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 47px,
+    var(--color-ink) 47px,
+    var(--color-ink) 48px
+  );
 }
 
 /* Custom Cursor interactions will be added via JS/Framer */
