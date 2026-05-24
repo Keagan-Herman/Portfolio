@@ -1,39 +1,40 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSpring, useMotionValue } from "framer-motion";
 
 export const useCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
+  const [isVisible, setIsVisible] = useState(false);
+  const isVisibleRef = useRef(false);
 
-  const springConfig = { damping: 25, stiffness: 700 };
-  const x = useSpring(cursorX, springConfig);
-  const y = useSpring(cursorY, springConfig);
+  const dotX = useMotionValue(-100);
+  const dotY = useMotionValue(-100);
+
+  // Raw values for the ring to lag from
+  const rawX = useMotionValue(-100);
+  const rawY = useMotionValue(-100);
+
+  // Ring uses spring for the lag effect
+  const ringX = useSpring(rawX, { damping: 30, stiffness: 200 });
+  const ringY = useSpring(rawY, { damping: 30, stiffness: 200 });
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+      if (!isVisibleRef.current) {
+        setIsVisible(true);
+        isVisibleRef.current = true;
+      }
+      dotX.set(e.clientX);
+      dotY.set(e.clientY);
+      rawX.set(e.clientX);
+      rawY.set(e.clientY);
+      const target = e.target as HTMLElement;
+      setIsHovered(!!target.closest('a, button, [data-hover]'));
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('a, button, [data-hover]')) {
-            setIsHovered(true);
-        } else {
-            setIsHovered(false);
-        }
-    }
-
     window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseOver);
-    return () => {
-        window.removeEventListener("mousemove", moveCursor);
-        window.removeEventListener("mouseover", handleMouseOver);
-    }
-  }, [cursorX, cursorY]);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, [dotX, dotY, rawX, rawY]);
 
-  return { x, y, isHovered };
+  return { dotX, dotY, ringX, ringY, isHovered, isVisible };
 };
