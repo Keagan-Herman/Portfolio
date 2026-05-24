@@ -1,0 +1,65 @@
+{
+  "name": "Herman",
+  "title": "Software Engineer",
+  "philosophy": {
+    "title": "A Rejection of the Generic",
+    "content": "This portfolio is a rejection of the standard developer aesthetic. No terminal fonts for body text. No neon gradients. No 'bento box' layouts. Instead, it embraces the editorial register — high stroke contrast serifs, generous whitespace, and a deliberate typographic tension that demands attention rather than just surface-level scanning. Precision in code should be reflected by precision in presentation."
+  },
+  "sections": [
+    {
+      "id": "experience",
+      "number": "01",
+      "title": "Experience",
+      "items": [
+        {
+          "company": "Tech Innovators",
+          "role": "Senior Frontend Engineer",
+          "period": "2022 — Present",
+          "description": "Leading the transition to a headless architecture using Next.js and Shopify. Focused on performance and high-fidelity UI."
+        },
+        {
+          "company": "Creative Studio",
+          "role": "Full Stack Developer",
+          "period": "2020 — 2022",
+          "description": "Developed bespoke digital experiences for global brands. Bridging the gap between design and engineering."
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "number": "02",
+      "title": "Selected Work",
+      "items": [
+        {
+          "name": "Project Alpha",
+          "type": "Web Application",
+          "description": "A high-performance dashboard with complex data visualization."
+        },
+        {
+          "name": "Project Beta",
+          "type": "Design System",
+          "description": "A multi-brand design system built with React and Tailwind."
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "number": "03",
+      "title": "Education",
+      "items": [
+        {
+          "institution": "University of Design & Tech",
+          "degree": "B.Sc. Computer Science",
+          "period": "2016 — 2020"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "hello@herman.dev",
+    "links": [
+      { "label": "GitHub", "url": "#" },
+      { "label": "LinkedIn", "url": "#" }
+    ]
+  }
+}

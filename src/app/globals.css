@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: var(--font-playfair);
+  --font-cormorant: var(--font-cormorant);
+  --font-dm-mono: var(--font-dm-mono);
+
+  --color-terracotta: #c8381a;
+  --color-paper: #fdfcfb;
+  --color-ink: #1a1a1a;
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --accent: var(--color-terracotta);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cormorant), serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Editorial Typography Rules */
+
+h1, h2, h3, .hollow-text {
+  font-family: var(--font-playfair), serif;
+  letter-spacing: -0.02em; /* Negative spacing on large type */
+}
+
+.hollow-text {
+  -webkit-text-stroke: 1px var(--foreground);
+  color: transparent;
+}
+
+.mono-label {
+  font-family: var(--font-dm-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* Positive spacing on uppercase mono */
+  font-size: 0.75rem;
+}
+
+/* Background Ruled Lines */
+.ruled-background {
+  background-image: linear-gradient(var(--foreground) 1px, transparent 1px);
+  background-size: 100% 4rem;
+  background-attachment: local;
+}
+
+/* Custom Cursor interactions will be added via JS/Framer */
