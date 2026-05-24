@@ -1,44 +1,69 @@
-export interface ProjectItem {
-  name: string;
-  type: string;
-  description: string;
+// ─── Skill Groups ────────────────────────────────────────────────────────────
+export interface SkillGroup {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  tags: string[];
 }
 
+// ─── Experience ──────────────────────────────────────────────────────────────
 export interface ExperienceItem {
   company: string;
   role: string;
   period: string;
   description: string;
+  highlights: string[];
 }
 
+// ─── Projects ────────────────────────────────────────────────────────────────
+export interface ProjectItem {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  tags: string[];
+  status: "Live" | "In Dev" | "Production";
+  url?: string;
+}
+
+// ─── Education ───────────────────────────────────────────────────────────────
 export interface EducationItem {
   institution: string;
   degree: string;
   period: string;
+  ethos: string;
 }
 
-export type SectionItem = ProjectItem | ExperienceItem | EducationItem;
-
-export interface Section {
-  id: string;
-  number: string;
-  title: string;
-  items: SectionItem[];
+// ─── About ───────────────────────────────────────────────────────────────────
+export interface About {
+  headline: string;
+  callout: string;
+  body: string[];
 }
 
+// ─── Contact ─────────────────────────────────────────────────────────────────
+export interface ContactLink {
+  label: string;
+  detail: string;
+  url: string;
+}
+
+export interface Contact {
+  email: string;
+  links: ContactLink[];
+}
+
+// ─── Root ────────────────────────────────────────────────────────────────────
 export interface Content {
-  name: string;
-  title: string;
-  philosophy: {
-    title: string;
-    content: string;
-  };
-  sections: Section[];
-  contact: {
-    email: string;
-    links: {
-      label: string;
-      url: string;
-    }[];
-  };
+  firstName: string;
+  lastName: string;
+  role: string;
+  summary: string;
+  about: About;
+  skills: SkillGroup[];
+  experience: ExperienceItem[];
+  projects: ProjectItem[];
+  education: EducationItem;
+  contact: Contact;
 }

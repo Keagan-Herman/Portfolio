@@ -1,65 +1,142 @@
 {
-  "name": "Herman",
-  "title": "Software Engineer",
-  "philosophy": {
-    "title": "A Rejection of the Generic",
-    "content": "This portfolio is a rejection of the standard developer aesthetic. No terminal fonts for body text. No neon gradients. No 'bento box' layouts. Instead, it embraces the editorial register — high stroke contrast serifs, generous whitespace, and a deliberate typographic tension that demands attention rather than just surface-level scanning. Precision in code should be reflected by precision in presentation."
+  "firstName": "Keagan",
+  "lastName": "Herman",
+  "role": "Full-Stack Software Engineer",
+  "summary": "Sole lead developer on two live production systems serving 200+ institutions. I build things that handle real load, real users, and real consequences — then I make them beautiful.",
+
+  "about": {
+    "headline": "I don't just close tickets. I own the outcome.",
+    "callout": "The kind of engineer who inherits a legacy system on Monday and is shipping meaningful improvements by Friday — without hand-holding.",
+    "body": [
+      "At IOSYSTEMS, I became the sole developer on two production systems — a nationwide library management platform used by 200+ institutions and a full agricultural logistics suite with RFID/IoT integrations, geospatial mapping, and two Flutter mobile apps I built from scratch.",
+      "I work directly with clients, translate ambiguous requirements into clean architecture, and deliver across the full stack without needing the problem pre-solved for me.",
+      "Outside of client work, I build portfolio projects to push my frontend ceiling: GPU-accelerated audio visualisers, AI-powered job matching platforms, and cinematic UI experiments."
+    ]
   },
-  "sections": [
+
+  "skills": [
     {
-      "id": "experience",
+      "id": "languages",
       "number": "01",
-      "title": "Experience",
-      "items": [
-        {
-          "company": "Tech Innovators",
-          "role": "Senior Frontend Engineer",
-          "period": "2022 — Present",
-          "description": "Leading the transition to a headless architecture using Next.js and Shopify. Focused on performance and high-fidelity UI."
-        },
-        {
-          "company": "Creative Studio",
-          "role": "Full Stack Developer",
-          "period": "2020 — 2022",
-          "description": "Developed bespoke digital experiences for global brands. Bridging the gap between design and engineering."
-        }
-      ]
+      "title": "Languages",
+      "subtitle": "Core",
+      "tags": ["C# / .NET", "TypeScript", "JavaScript", "Dart / Flutter", "Kotlin", "Python", "HTML / CSS", "GLSL"]
     },
     {
-      "id": "projects",
+      "id": "frontend",
       "number": "02",
-      "title": "Selected Work",
-      "items": [
-        {
-          "name": "Project Alpha",
-          "type": "Web Application",
-          "description": "A high-performance dashboard with complex data visualization."
-        },
-        {
-          "name": "Project Beta",
-          "type": "Design System",
-          "description": "A multi-brand design system built with React and Tailwind."
-        }
+      "title": "Frontend",
+      "subtitle": "UI & Interaction",
+      "tags": ["React 18", "Next.js", "Three.js / R3F", "D3.js", "Framer Motion", "Tailwind CSS", "Blazor", "Web Audio API"]
+    },
+    {
+      "id": "backend",
+      "number": "03",
+      "title": "Backend & Data",
+      "subtitle": "Systems",
+      "tags": ["PostgreSQL", "PostGIS", "MSSQL", "Supabase", "REST API Design", "Zustand"]
+    },
+    {
+      "id": "infra",
+      "number": "04",
+      "title": "Infrastructure",
+      "subtitle": "Deployment & Tools",
+      "tags": ["Vercel", "CI/CD", "GitHub Actions", "Git", "Jest / RTL", "Power BI"]
+    },
+    {
+      "id": "mobile",
+      "number": "05",
+      "title": "Mobile",
+      "subtitle": "iOS & Android",
+      "tags": ["Flutter", "Dart", "Kotlin", "RFID / IoT", "Geospatial"]
+    },
+    {
+      "id": "ai",
+      "number": "06",
+      "title": "AI & Emerging",
+      "subtitle": "Applied Intelligence",
+      "tags": ["Groq API", "LLaMA 3.3", "Claude API", "WebGL / GLSL", "GPU Shaders"]
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "IOSYSTEMS",
+      "role": "Software Engineer",
+      "period": "Sept 2024 — Present",
+      "description": "Sole developer on two inherited production systems — a nationwide library management platform (200+ institutions) and a full agricultural logistics suite.",
+      "highlights": [
+        "Built two Flutter mobile apps from scratch: livestock RFID tracking, inventory, field ops, and client data viewing.",
+        "Developed a geospatial mapping app using PostGIS and .NET, rendering South African Surveyor General polygon data.",
+        "Designed and maintained RESTful APIs across PostgreSQL, MSSQL, and PostGIS.",
+        "Engaged directly with clients to gather requirements; maintained CI/CD pipelines throughout."
       ]
     },
     {
-      "id": "education",
-      "number": "03",
-      "title": "Education",
-      "items": [
-        {
-          "institution": "University of Design & Tech",
-          "degree": "B.Sc. Computer Science",
-          "period": "2016 — 2020"
-        }
+      "company": "Coega Development Corporation",
+      "role": "Web Developer Intern",
+      "period": "Nov 2023 — Sept 2024",
+      "description": "Led a full rebuild of the corporate website in Next.js and TypeScript, replacing a legacy codebase.",
+      "highlights": [
+        "Built a Python-based AI chatbot to automate internal information queries.",
+        "Delivered Power BI dashboards consuming internal and external data sources.",
+        "Bridged communication between non-technical teams and development deliverables."
       ]
     }
   ],
+
+  "projects": [
+    {
+      "id": "waveform",
+      "name": "Waveform",
+      "tagline": "GPU-accelerated music visualiser and discovery app.",
+      "description": "Zero-allocation 60fps audio pipeline bypassing React's component lifecycle entirely. Custom GLSL vertex and fragment shaders drive real-time 3D geometry morphing from live frequency data. Hybrid beat detection, D3.js force-directed genre graph, and dynamic album-art colour extraction.",
+      "tags": ["React 18", "Three.js / R3F", "GLSL", "Web Audio API", "D3.js", "Zustand", "Deezer API"],
+      "status": "Live",
+      "url": "https://github.com/Keagan-Herman/WaveForm"
+    },
+    {
+      "id": "jobhunter",
+      "name": "JobHunter",
+      "tagline": "AI-powered job matching platform — full stack, production deployed.",
+      "description": "Aggregates live listings from multiple job APIs, scores each role against a parsed CV using LLM inference (Groq / LLaMA 3.3 70B), generates context-aware cover letters, and tracks the full application pipeline. Behavioural calibration layer adjusts future scoring based on past decisions.",
+      "tags": ["Next.js 14", "TypeScript", "Supabase", "Groq / LLaMA 3.3", "Adzuna", "Resend", "Vercel"],
+      "status": "Live",
+      "url": "#"
+    },
+    {
+      "id": "setlist",
+      "name": "Setlist",
+      "tagline": "Tactical football formation and match events visualiser.",
+      "description": "Live formation visualiser with fluid position transitions, D3 force-directed pass networks, progressive heat map overlays, and a match timeline scrubber. Renders API-Football data as a reactive canvas rather than a statistics dashboard.",
+      "tags": ["React", "D3.js", "Canvas API", "Framer Motion", "Zustand", "API-Football"],
+      "status": "In Dev",
+      "url": "#"
+    },
+    {
+      "id": "agricultural",
+      "name": "Agricultural Logistics Suite",
+      "tagline": "Production system — RFID/IoT, geospatial mapping, two mobile apps.",
+      "description": "Full-stack agricultural logistics platform with RFID livestock tracking, inventory management, field operations, and client-facing data viewing. Geospatial mapping on PostGIS and .NET rendering Surveyor General polygon data. Two Flutter apps built from scratch. Sole developer, live in production.",
+      "tags": ["C# / .NET", "Flutter", "PostGIS", "PostgreSQL", "RFID / IoT", "REST APIs"],
+      "status": "Production"
+    }
+  ],
+
+  "education": {
+    "institution": "IIE Varsity College",
+    "degree": "Diploma in Information Technology & Software Development",
+    "period": "2021 — 2023",
+    "ethos": "Formal training gave me the fundamentals. Production systems gave me the judgment."
+  },
+
   "contact": {
-    "email": "hello@herman.dev",
+    "email": "Hermankeagan171@gmail.com",
     "links": [
-      { "label": "GitHub", "url": "#" },
-      { "label": "LinkedIn", "url": "#" }
+      { "label": "Email",    "detail": "Hermankeagan171@gmail.com",      "url": "mailto:Hermankeagan171@gmail.com" },
+      { "label": "LinkedIn", "detail": "linkedin.com/in/keagan-herman",   "url": "https://linkedin.com/in/keagan-herman" },
+      { "label": "GitHub",   "detail": "github.com/Keagan-Herman",        "url": "https://github.com/Keagan-Herman" },
+      { "label": "Phone",    "detail": "067 078 5854 · Cape Town, SA",    "url": "tel:0670785854" }
     ]
   }
 }
