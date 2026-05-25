@@ -26,7 +26,7 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="font-playfair font-black leading-[0.88] tracking-[-0.03em] mb-6"
+            className="font-playfair font-bold leading-[0.88] tracking-[-0.03em] mb-4"
             style={{ fontSize: "clamp(5rem, 12vw, 12rem)" }}
           >
             <span className="block">{content.firstName}</span>
