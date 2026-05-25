@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Keagan Herman | Full-Stack Software Engineer
 
-## Getting Started
+A data-driven portfolio built with a focus on editorial design, high-performance interactions, and clean architecture.
 
-First, run the development server:
+## ✒️ Design Philosophy
+This project embraces an **Editorial/Print aesthetic**, drawing inspiration from high-end typography and minimalist layouts.
+- **Typography:** Utilizes Playfair Display for hollow headlines, Cormorant Garamond for elegant body text, and DM Mono for technical details.
+- **Color Palette:** A warm "Ink on Paper" experience featuring:
+  - **Paper:** `#f4efe4` (Warm Cream)
+  - **Ink:** `#111009` (Deep Charcoal)
+  - **Accent:** `#c8381a` (Terracotta)
+- **Tensions:** Intentional design choices like high stroke contrast and non-standard letter-spacing create a unique visual rhythm.
 
+## 🛠️ Tech Stack
+- **Framework:** Next.js 15+ (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 (configured via CSS `@theme`)
+- **Animations:** Framer Motion
+- **Data:** Managed via `src/data/content.json` for easy updates.
+
+## ✨ Key Features
+- **Custom Cursor:** A dual-element cursor (solid dot + lagging spring-ring) with a multiply blend mode.
+- **Editorial Layout:** Fixed horizontal ruled lines and large ghost numerals for section anchors.
+- **Data-Driven:** All professional experience, skills, and projects are centralized in a single JSON schema.
+- **Responsive & Performant:** Optimized for all devices while maintaining the core design integrity.
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (Latest LTS recommended)
+- npm
+
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
+Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
+Generate a production-ready build:
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📂 Project Structure
+- `src/app/`: Next.js App Router and global styles.
+- `src/components/`: Reusable UI components and section-specific layouts.
+- `src/data/`: Centralized content (`content.json`).
+- `src/types/`: TypeScript definitions for the content schema.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built by [Keagan Herman](https://github.com/Keagan-Herman)
