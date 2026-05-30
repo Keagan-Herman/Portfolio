@@ -5,7 +5,7 @@ import { useCursor } from "@/hooks/useCursor";
 import { AnimatePresence } from "framer-motion";
 
 export const CustomCursor = () => {
-  const { dotX, dotY, ringX, ringY, isHovered, isVisible, cursorLabel, blendMode } = useCursor();
+  const { dotX, dotY, ringX, ringY, isHovered, cursorLabel, isVisible } = useCursor();
 
   if (!isVisible) return null;
 
@@ -43,24 +43,22 @@ export const CustomCursor = () => {
         animate={{
           borderColor: isHovered ? "var(--color-terracotta)" : "var(--color-ink)",
           opacity: isHovered ? 0.7 : 0.4,
-          scale: isHovered ? 1.5 : 1,
-          width: cursorLabel ? 80 : 32,
-          height: cursorLabel ? 80 : 32,
+          scale: isHovered ? 2.5 : 1,
+          borderWidth: isHovered ? 1 : 1,
         }}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <AnimatePresence>
-          {cursorLabel && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="mono-label text-[10px] text-terracotta font-bold"
-            >
-              {cursorLabel}
-            </motion.span>
-          )}
-        </AnimatePresence>
+        <motion.span
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{
+            opacity: isHovered && cursorLabel ? 1 : 0,
+            scale: isHovered && cursorLabel ? 1 : 0.5,
+          }}
+          className="mono-label text-terracotta"
+          style={{ fontSize: '10px', letterSpacing: '0.1em' }}
+        >
+          {cursorLabel || "VIEW"}
+        </motion.span>
       </motion.div>
     </>
   );

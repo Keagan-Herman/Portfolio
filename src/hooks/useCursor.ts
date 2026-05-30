@@ -4,6 +4,7 @@ import { useSpring, useMotionValue } from "framer-motion";
 
 export const useCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [cursorLabel, setCursorLabel] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [cursorLabel, setCursorLabel] = useState<string | null>(null);
   const [blendMode, setBlendMode] = useState<string>("multiply");
@@ -16,9 +17,9 @@ export const useCursor = () => {
   const rawX = useMotionValue(-100);
   const rawY = useMotionValue(-100);
 
-  // Ring uses spring for the lag effect - adjusted for more "organic" lag
-  const ringX = useSpring(rawX, { damping: 40, stiffness: 250, mass: 0.5 });
-  const ringY = useSpring(rawY, { damping: 40, stiffness: 250, mass: 0.5 });
+  // Ring uses spring for the lag effect - adjusted for high-end feel
+  const ringX = useSpring(rawX, { damping: 35, stiffness: 180, mass: 0.5 });
+  const ringY = useSpring(rawY, { damping: 35, stiffness: 180, mass: 0.5 });
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
@@ -32,22 +33,14 @@ export const useCursor = () => {
       rawY.set(e.clientY);
 
       const target = e.target as HTMLElement;
-      const interactive = target.closest("a, button, [data-hover], [data-cursor-label]");
-
-      setIsHovered(!!interactive);
-
-      if (interactive) {
-        setCursorLabel(interactive.getAttribute("data-cursor-label"));
-        setBlendMode(interactive.getAttribute("data-cursor-blend") || "multiply");
-      } else {
-        setCursorLabel(null);
-        setBlendMode("multiply");
-      }
+      const hoverElement = target.closest('a, button, [data-hover]') as HTMLElement;
+      setIsHovered(!!hoverElement);
+      setCursorLabel(hoverElement?.getAttribute("data-cursor-label") || null);
     };
 
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [dotX, dotY, rawX, rawY]);
 
-  return { dotX, dotY, ringX, ringY, isHovered, isVisible, cursorLabel, blendMode };
+  return { dotX, dotY, ringX, ringY, isHovered, cursorLabel, isVisible };
 };

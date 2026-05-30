@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/CustomCursor";
+import { PaperTexture } from "@/components/PaperTexture";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -46,15 +47,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${cormorant.variable} ${dmMono.variable} antialiased`}
       >
-        {/* Global SVG Filters for editorial effects */}
-        <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
-          <filter id="ink-bleed">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="bleed" />
-            <feComposite in="SourceGraphic" in2="bleed" operator="over" />
-          </filter>
-        </svg>
-
+        <PaperTexture />
         <CustomCursor />
         {children}
       </body>

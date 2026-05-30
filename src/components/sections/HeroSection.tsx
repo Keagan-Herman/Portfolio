@@ -40,7 +40,7 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="font-playfair font-bold leading-[0.85] tracking-[-0.04em] mb-4"
+            className="font-playfair font-black leading-[0.88] tracking-[-0.05em] mb-4"
             style={{ fontSize: "clamp(5rem, 12vw, 12rem)" }}
           >
             <motion.span style={{ y: y1 }} className="block">
@@ -88,21 +88,23 @@ export function HeroSection() {
             {content.summary}
           </p>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12">
             {[
               { num: "2+",   label: "Years Production Experience" },
               { num: "200+", label: "Institutions Served" },
               { num: "5",    label: "Live Projects Shipped" },
               { num: "Full", label: "Stack, Front to Back" },
             ].map(({ num, label }) => (
-              <div key={label} className="border-t-2 border-terracotta pt-4">
+              <div key={label} className="relative pt-6">
+                <div className="absolute top-0 left-0 w-full h-px bg-terracotta/40" />
+                <div className="absolute top-0 left-0 w-1/4 h-px bg-terracotta" />
                 <div
-                  className="font-playfair font-bold leading-none mb-1"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+                  className="font-playfair font-black leading-none mb-2"
+                  style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.05em" }}
                 >
                   {num}
                 </div>
-                <div className="mono-label opacity-40">{label}</div>
+                <div className="mono-label opacity-40 leading-tight max-w-[120px]">{label}</div>
               </div>
             ))}
           </div>
