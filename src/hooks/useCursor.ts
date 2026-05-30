@@ -6,6 +6,8 @@ export const useCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [cursorLabel, setCursorLabel] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [cursorLabel, setCursorLabel] = useState<string | null>(null);
+  const [blendMode, setBlendMode] = useState<string>("multiply");
   const isVisibleRef = useRef(false);
 
   const dotX = useMotionValue(-100);
@@ -29,6 +31,7 @@ export const useCursor = () => {
       dotY.set(e.clientY);
       rawX.set(e.clientX);
       rawY.set(e.clientY);
+
       const target = e.target as HTMLElement;
       const hoverElement = target.closest('a, button, [data-hover]') as HTMLElement;
       setIsHovered(!!hoverElement);

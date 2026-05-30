@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { useCursor } from "@/hooks/useCursor";
 
+import { AnimatePresence } from "framer-motion";
+
 export const CustomCursor = () => {
   const { dotX, dotY, ringX, ringY, isHovered, cursorLabel, isVisible } = useCursor();
 
@@ -20,7 +22,7 @@ export const CustomCursor = () => {
           width: 8,
           height: 8,
           backgroundColor: "var(--color-ink)",
-          mixBlendMode: "multiply",
+          mixBlendMode: blendMode as React.CSSProperties["mixBlendMode"],
         }}
         animate={{ scale: isHovered ? 1.8 : 1 }}
         transition={{ duration: 0.15 }}

@@ -110,6 +110,15 @@ export function ExperienceSection() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Stamp Effect for Present role */}
+                {item.period.includes("Present") && (
+                  <div className="absolute -top-6 -right-4 md:-right-12 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-500 rotate-12">
+                    <div className="border-2 border-terracotta rounded-sm px-3 py-1 text-terracotta font-playfair font-bold text-xs uppercase tracking-widest whitespace-nowrap">
+                      Active Deployment
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

@@ -33,6 +33,7 @@ export function AboutSection() {
 
         {/* Right — content */}
         <motion.div
+          data-cursor-label="READ"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
