@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/CustomCursor";
+import { PaperTexture } from "@/components/PaperTexture";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${cormorant.variable} ${dmMono.variable} antialiased`}
       >
+        <PaperTexture />
         <CustomCursor />
         {children}
       </body>

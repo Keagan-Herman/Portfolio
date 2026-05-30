@@ -52,6 +52,7 @@ export function ProjectsSection() {
                 className="group grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] border-t border-ink/10
                            hover:bg-[#ece6d8] transition-colors duration-200 cursor-pointer"
                 data-hover
+                data-cursor-label="VIEW"
               >
                 {/* Number column */}
                 <div className="border-r border-ink/10 flex flex-col items-end justify-start p-4 md:p-6 pt-8">
