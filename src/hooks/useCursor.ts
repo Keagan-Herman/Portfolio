@@ -5,6 +5,8 @@ import { useSpring, useMotionValue } from "framer-motion";
 export const useCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [cursorLabel, setCursorLabel] = useState<string | null>(null);
+  const [blendMode, setBlendMode] = useState<string>("multiply");
   const isVisibleRef = useRef(false);
 
   const dotX = useMotionValue(-100);
@@ -14,9 +16,9 @@ export const useCursor = () => {
   const rawX = useMotionValue(-100);
   const rawY = useMotionValue(-100);
 
-  // Ring uses spring for the lag effect
-  const ringX = useSpring(rawX, { damping: 30, stiffness: 200 });
-  const ringY = useSpring(rawY, { damping: 30, stiffness: 200 });
+  // Ring uses spring for the lag effect - adjusted for more "organic" lag
+  const ringX = useSpring(rawX, { damping: 40, stiffness: 250, mass: 0.5 });
+  const ringY = useSpring(rawY, { damping: 40, stiffness: 250, mass: 0.5 });
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
@@ -28,13 +30,24 @@ export const useCursor = () => {
       dotY.set(e.clientY);
       rawX.set(e.clientX);
       rawY.set(e.clientY);
+
       const target = e.target as HTMLElement;
-      setIsHovered(!!target.closest('a, button, [data-hover]'));
+      const interactive = target.closest("a, button, [data-hover], [data-cursor-label]");
+
+      setIsHovered(!!interactive);
+
+      if (interactive) {
+        setCursorLabel(interactive.getAttribute("data-cursor-label"));
+        setBlendMode(interactive.getAttribute("data-cursor-blend") || "multiply");
+      } else {
+        setCursorLabel(null);
+        setBlendMode("multiply");
+      }
     };
 
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [dotX, dotY, rawX, rawY]);
 
-  return { dotX, dotY, ringX, ringY, isHovered, isVisible };
+  return { dotX, dotY, ringX, ringY, isHovered, isVisible, cursorLabel, blendMode };
 };

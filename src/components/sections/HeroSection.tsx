@@ -1,16 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
+import { useRef } from "react";
 
 const content = contentData as Content;
 
 const SPRING = { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const };
 
 export function HeroSection() {
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
-    <header id="hero" className="relative z-10 min-h-screen grid grid-rows-[1fr_auto] px-8 md:px-24">
+    <header
+      id="hero"
+      ref={containerRef}
+      className="relative z-10 min-h-screen grid grid-rows-[1fr_auto] px-8 md:px-24"
+    >
       {/* Main content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-end pb-12 pt-16">
         {/* Left — name + CTA */}
@@ -26,11 +40,15 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="font-playfair font-bold leading-[0.88] tracking-[-0.03em] mb-4"
+            className="font-playfair font-bold leading-[0.85] tracking-[-0.04em] mb-4"
             style={{ fontSize: "clamp(5rem, 12vw, 12rem)" }}
           >
-            <span className="block">{content.firstName}</span>
-            <span className="hollow-text block">{content.lastName}</span>
+            <motion.span style={{ y: y1 }} className="block">
+              {content.firstName}
+            </motion.span>
+            <motion.span style={{ y: y2 }} className="hollow-text block">
+              {content.lastName}
+            </motion.span>
           </h1>
 
           <p

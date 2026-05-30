@@ -53,7 +53,8 @@ export function ContactSection() {
                 className="group relative flex items-center justify-between py-6
                            border-b border-ink/10 first:border-t first:border-ink/10
                            hover:pl-5 transition-all duration-200"
-                data-hover
+                data-cursor-label="TALK"
+                data-cursor-blend="difference"
               >
                 {/* Left accent bar */}
                 <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-terracotta scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />

@@ -30,11 +30,13 @@ body {
 h1, h2, h3, .hollow-text {
   font-family: var(--font-playfair), serif;
   letter-spacing: -0.02em; /* Negative spacing on large type */
+  filter: url(#ink-bleed); /* Apply subtle ink bleed effect */
 }
 
 .hollow-text {
   -webkit-text-stroke: 1px var(--foreground);
   color: transparent;
+  filter: none; /* Hollow text shouldn't bleed the same way */
 }
 
 .mono-label {
@@ -53,6 +55,23 @@ h1, h2, h3, .hollow-text {
     var(--color-ink) 47px,
     var(--color-ink) 48px
   );
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.animate-grain {
+  animation: grain 8s steps(10) infinite;
 }
 
 /* Custom Cursor interactions will be added via JS/Framer */

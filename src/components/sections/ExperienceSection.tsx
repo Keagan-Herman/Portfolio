@@ -42,7 +42,7 @@ export function ExperienceSection() {
         </div>
 
         {/* Experience items */}
-        <div>
+        <div className="border-t border-ink/10">
           {content.experience.map((item, i) => (
             <motion.div
               key={item.company}
@@ -50,14 +50,15 @@ export function ExperienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-              className="group relative grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 md:gap-12
-                         items-start py-10 border-t border-ink/10
-                         hover:pl-6 transition-all duration-300"
+              className="group relative grid grid-cols-1 md:grid-cols-[200px_1fr_auto] gap-4 md:gap-12
+                         items-start py-12 border-b border-ink/10
+                         hover:bg-ink/[0.02] transition-all duration-300"
             >
-              {/* Left accent bar */}
-              <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-terracotta scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+              {/* Period */}
+              <div className="mono-label opacity-35 pt-1 order-2 md:order-1">{item.period}</div>
 
-              <div>
+              {/* Details */}
+              <div className="order-1 md:order-2 relative">
                 <h3
                   className="font-playfair font-bold leading-none mb-2"
                   style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)" }}
@@ -68,18 +69,31 @@ export function ExperienceSection() {
                   {item.company}
                 </p>
 
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {item.highlights.map((point, j) => (
-                    <li key={j} className="flex gap-3 font-cormorant opacity-70" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
+                    <li key={j} className="flex gap-3 font-cormorant opacity-70" style={{ fontSize: "1rem", lineHeight: 1.6 }}>
                       <span className="opacity-40 flex-shrink-0 mt-0.5">—</span>
                       {point}
                     </li>
                   ))}
                 </ul>
+
+                {/* Stamp Effect for Present role */}
+                {item.period.includes("Present") && (
+                  <div className="absolute -top-6 -right-4 md:-right-12 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-500 rotate-12">
+                    <div className="border-2 border-terracotta rounded-sm px-3 py-1 text-terracotta font-playfair font-bold text-xs uppercase tracking-widest whitespace-nowrap">
+                      Active Deployment
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Date — right column */}
-              <div className="mono-label opacity-35 whitespace-nowrap pt-1">{item.period}</div>
+              {/* Right column placeholder/branding */}
+              <div className="hidden md:block order-3">
+                <div className="w-8 h-8 rounded-full border border-ink/10 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-terracotta/40" />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
