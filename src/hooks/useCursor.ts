@@ -6,7 +6,6 @@ export const useCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [cursorLabel, setCursorLabel] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [cursorLabel, setCursorLabel] = useState<string | null>(null);
   const [blendMode, setBlendMode] = useState<string>("multiply");
   const isVisibleRef = useRef(false);
 
@@ -42,5 +41,5 @@ export const useCursor = () => {
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [dotX, dotY, rawX, rawY]);
 
-  return { dotX, dotY, ringX, ringY, isHovered, cursorLabel, isVisible };
+  return { dotX, dotY, ringX, ringY, isHovered, cursorLabel, isVisible, blendMode };
 };

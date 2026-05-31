@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
 import { useRef } from "react";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const content = contentData as Content;
 
@@ -59,18 +60,18 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
-            <a
+            <MagneticButton
               href="#projects"
-              className="mono-label px-8 py-3 bg-terracotta text-paper border border-terracotta hover:bg-ink hover:border-ink transition-colors duration-200"
+              className="mono-label inline-block px-8 py-3 bg-terracotta text-paper border border-terracotta hover:bg-ink hover:border-ink transition-colors duration-200"
             >
               View Projects
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
               href="#contact"
-              className="mono-label px-8 py-3 border border-ink/20 hover:border-ink transition-colors duration-200"
+              className="mono-label inline-block px-8 py-3 border border-ink/20 hover:border-ink transition-colors duration-200"
             >
               Get in Touch
-            </a>
+            </MagneticButton>
           </div>
         </motion.div>
 
