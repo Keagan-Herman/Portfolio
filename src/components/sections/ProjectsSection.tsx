@@ -1,12 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
+import { useState } from "react";
 
 const content = contentData as Content;
 
 export function ProjectsSection() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
   return (
     <section id="projects" className="relative z-10 py-24 md:py-40 px-8 md:px-24">
       <div className="max-w-screen-xl mx-auto">
@@ -46,16 +49,32 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
+              onMouseEnter={() => setHoveredId(project.id)}
+              onMouseLeave={() => setHoveredId(null)}
             >
               <Wrapper
                 {...wrapperProps}
                 className="group grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] border-t border-ink/10
-                           hover:bg-[#ece6d8] transition-colors duration-200 cursor-pointer"
+                           relative transition-colors duration-200 cursor-pointer"
                 data-hover
                 data-cursor-label="VIEW"
               >
+                {/* Framer Motion Shared Hover Background */}
+                <AnimatePresence>
+                  {hoveredId === project.id && (
+                    <motion.div
+                      layoutId="project-hover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 bg-[#ece6d8] z-0"
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    />
+                  )}
+                </AnimatePresence>
+
                 {/* Number column */}
-                <div className="border-r border-ink/10 flex flex-col items-end justify-start p-4 md:p-6 pt-8">
+                <div className="relative z-10 border-r border-ink/10 flex flex-col items-end justify-start p-4 md:p-6 pt-8">
                   <span
                     className="font-playfair font-black opacity-10"
                     style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1 }}
@@ -65,7 +84,7 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Body */}
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 p-6 md:p-8 items-start">
+                <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 p-6 md:p-8 items-start">
                   <div>
                     <h3
                       className="font-playfair font-bold leading-none mb-2 group-hover:text-terracotta transition-colors duration-200"

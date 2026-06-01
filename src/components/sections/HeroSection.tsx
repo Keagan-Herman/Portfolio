@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const content = contentData as Content;
@@ -11,7 +11,13 @@ const content = contentData as Content;
 const SPRING = { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const };
 
 export function HeroSection() {
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -19,15 +25,57 @@ export function HeroSection() {
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
     <header
       id="hero"
       ref={containerRef}
-      className="relative z-10 min-h-screen grid grid-rows-[1fr_auto] px-8 md:px-24"
+      className="relative z-10 min-h-screen grid grid-rows-[auto_1fr_auto] px-8 md:px-24"
     >
+      {/* Editorial Masthead Top Bar */}
+      <motion.div
+        style={{ opacity }}
+        className="flex justify-between items-center py-8 border-b border-ink/10"
+      >
+        <div className="flex gap-12">
+          <div className="space-y-1">
+            <span className="mono-label block opacity-30 text-[0.6rem]">Volume</span>
+            <span className="mono-label block font-bold">No. 01 — Portfolio</span>
+          </div>
+          <div className="hidden md:block space-y-1">
+            <span className="mono-label block opacity-30 text-[0.6rem]">Location</span>
+            <span className="mono-label block">Cape Town, SA</span>
+          </div>
+        </div>
+        <div className="text-right space-y-1">
+          <span className="mono-label block opacity-30 text-[0.6rem]">Date Shipped</span>
+          <span className="mono-label block">
+            {mounted
+              ? new Date().toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }).toUpperCase()
+              : "JAN 2025" // Fallback to avoid shift
+            }
+          </span>
+        </div>
+      </motion.div>
+
+      {/* Marginalia - Side Notes */}
+      <motion.aside
+        style={{ y: y2, opacity }}
+        className="absolute left-6 top-1/3 hidden lg:block w-32 space-y-8"
+      >
+        <div className="space-y-2">
+          <div className="w-8 h-px bg-terracotta" />
+          <p className="mono-label text-[0.55rem] leading-relaxed opacity-40">
+            ENGINEERED FOR<br />
+            PRECISION AND<br />
+            AESTHETIC LONGEVITY.
+          </p>
+        </div>
+      </motion.aside>
+
       {/* Main content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-end pb-12 pt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-end pb-12 pt-12">
         {/* Left — name + CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

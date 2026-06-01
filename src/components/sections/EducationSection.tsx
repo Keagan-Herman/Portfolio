@@ -10,8 +10,17 @@ export function EducationSection() {
   const edu = content.education;
 
   return (
-    <section id="education" className="relative z-10 bg-ink text-paper py-24 md:py-40 px-8 md:px-24">
-      <div className="max-w-screen-xl mx-auto">
+    <section id="education" className="relative z-10 bg-paper text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden">
+      {/* Ink Spread Entry Animation */}
+      <motion.div
+        initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+        whileInView={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-0 bg-ink"
+      />
+
+      <div className="max-w-screen-xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
 
           {/* Left */}
