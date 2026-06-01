@@ -8,8 +8,17 @@ const content = contentData as Content;
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative z-10 bg-ink text-paper py-24 md:py-40 px-8 md:px-24">
-      <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 md:gap-24 items-start">
+    <section id="about" className="relative z-10 bg-paper text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden">
+      {/* Ink Spread Entry Animation */}
+      <motion.div
+        initial={{ clipPath: "circle(0% at 50% 50%)" }}
+        whileInView={{ clipPath: "circle(150% at 50% 50%)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-0 bg-ink"
+      />
+
+      <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-12 md:gap-24 items-start relative z-10">
 
         {/* Left — ghost label */}
         <motion.div
@@ -42,8 +51,8 @@ export function AboutSection() {
           <span className="mono-label text-terracotta block mb-6">01 — About</span>
 
           <h2
-            className="font-playfair italic font-normal text-paper leading-[1.2] mb-10"
-            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
+            className="font-playfair italic font-normal text-paper leading-[1.2] mb-10 tracking-tight"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "-0.01em" }}
           >
             {content.about.headline}
           </h2>

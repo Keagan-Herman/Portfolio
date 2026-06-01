@@ -2,19 +2,21 @@
 
 export function PaperTexture() {
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.045] mix-blend-multiply overflow-hidden">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <filter id="paperGrain">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.85"
-            numOctaves="4"
-            stitchTiles="stitch"
-          />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#paperGrain)" />
-      </svg>
-    </div>
+    <>
+      {/* Base Paper Grain - Persistent Fractal Noise */}
+      <div className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.05] mix-blend-multiply overflow-hidden">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <rect width="100%" height="100%" filter="url(#paper-grain-filter)" />
+        </svg>
+      </div>
+
+      {/* Dynamic Animated Grain - Subtle flicker for "Living Document" feel */}
+      <div className="fixed inset-0 pointer-events-none z-[100] opacity-[0.02] mix-blend-multiply overflow-hidden">
+        <div className="absolute inset-[-200%] w-[400%] h-[400%] bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] animate-grain" />
+      </div>
+
+      {/* Subtle vignettes for depth */}
+      <div className="fixed inset-0 pointer-events-none z-[101] shadow-[inset_0_0_150px_rgba(17,16,9,0.05)]" />
+    </>
   );
 }

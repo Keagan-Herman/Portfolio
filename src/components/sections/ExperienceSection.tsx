@@ -77,13 +77,19 @@ export function ExperienceSection() {
 
               {/* Column 2: Entity & Role */}
               <div className="relative space-y-6">
-                <div className="inline-block relative">
+                <motion.div
+                  initial={{ rotate: i % 2 === 0 ? -2 : 2, scale: 0.9 }}
+                  whileInView={{ rotate: i % 2 === 0 ? -1 : 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+                  className="inline-block relative"
+                >
                    {/* Stamp effect for company */}
-                   <div className="relative z-10 px-4 py-1.5 border border-ink/30 mono-label text-[0.7rem] tracking-[0.2em] uppercase bg-paper/50">
+                   <div className="relative z-10 px-4 py-1.5 border border-ink/30 mono-label text-[0.7rem] tracking-[0.2em] uppercase bg-paper/50 shadow-[2px_2px_0px_rgba(17,16,9,0.05)]">
                     {item.company}
                   </div>
                   <div className="absolute -inset-1 border border-terracotta/20 -rotate-1 pointer-events-none group-hover:rotate-1 transition-transform duration-500" />
-                </div>
+                </motion.div>
 
                 <h3 className="font-playfair font-bold text-3xl leading-tight tracking-tight group-hover:text-terracotta transition-colors duration-300">
                   {item.role}
