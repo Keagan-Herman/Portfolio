@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 
 export function Colophon() {
   return (
@@ -17,7 +16,7 @@ export function Colophon() {
             </div>
             <div className="group">
               <h4 className="font-cormorant font-bold text-2xl mb-1 group-hover:text-terracotta transition-colors">Cormorant Garamond</h4>
-              <p className="font-cormorant text-ink/60 text-sm italic">Body & Narrative. A free interpretation of the Claude Garamond's immortal grecs du roi.</p>
+              <p className="font-cormorant text-ink/60 text-sm italic">Body &amp; Narrative. A free interpretation of the Claude Garamond&apos;s immortal grecs du roi.</p>
             </div>
             <div className="group">
               <h4 className="font-dm-mono text-xl mb-1 group-hover:text-terracotta transition-colors uppercase tracking-widest">DM Mono</h4>
@@ -39,7 +38,7 @@ export function Colophon() {
               <span className="font-dm-mono text-xs border-b border-terracotta/30 ml-1">Framer Motion</span>.
             </p>
             <p>
-              The "Ink Bleed" effect is achieved via a custom SVG turbulence and color matrix filter, applied selectively to primary headlines.
+              The &quot;Ink Bleed&quot; effect is achieved via a custom SVG turbulence and color matrix filter, applied selectively to primary headlines.
             </p>
           </div>
         </div>

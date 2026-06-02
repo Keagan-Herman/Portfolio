@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 import { useRef, ReactNode } from "react";
 
 interface MagneticButtonProps {
@@ -61,11 +61,8 @@ export function MagneticButton({
           y: springY,
         }}
       >
-        {/* @ts-ignore - Dynamic component type safety */}
         <Component
-          href={href}
-          onClick={onClick}
-          className={className}
+          {...( { href, onClick, className } as any )}
         >
           {children}
         </Component>

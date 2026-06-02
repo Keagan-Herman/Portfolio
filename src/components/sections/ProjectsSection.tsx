@@ -35,6 +35,13 @@ export function ProjectsSection() {
         </motion.div>
 
         {/* Project list */}
+        <div className="relative">
+           {/* Marginalia for project spec */}
+           <div className="absolute -right-16 top-0 h-full hidden xl:flex flex-col justify-around py-32 opacity-20 pointer-events-none">
+            <div className="mono-label [writing-mode:vertical-lr] text-[0.6rem] tracking-[0.5em]">BUILD SPECIFICATION</div>
+            <div className="mono-label [writing-mode:vertical-lr] text-[0.6rem] tracking-[0.5em]">TECHNICAL AUDIT</div>
+          </div>
+
         {content.projects.map((project, i) => {
           const isLinked = !!project.url && project.url !== "#";
           const Wrapper = isLinked ? "a" : "div";
@@ -53,7 +60,7 @@ export function ProjectsSection() {
               onMouseLeave={() => setHoveredId(null)}
             >
               <Wrapper
-                {...wrapperProps}
+                {...(wrapperProps as any)}
                 className="group grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] border-t border-ink/10
                            relative transition-colors duration-200 cursor-pointer"
                 data-hover
@@ -141,6 +148,7 @@ export function ProjectsSection() {
             </motion.div>
           );
         })}
+        </div>
 
         {/* Close the list */}
         <div className="border-t border-ink/10" />

@@ -10,7 +10,10 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative z-10 py-24 md:py-48 px-8 md:px-24 bg-paper overflow-hidden">
       {/* Background flourish - large ghost initials */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-playfair font-black text-[30vw] opacity-[0.02] select-none pointer-events-none">
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-playfair font-black text-[30vw] opacity-[0.03] select-none pointer-events-none"
+        style={{ filter: "url(#letterpress)" }}
+      >
         {content.firstName[0]}{content.lastName[0]}
       </div>
 
@@ -124,7 +127,7 @@ export function ContactSection() {
           <div className="space-y-4">
             <h4 className="mono-label text-[0.65rem] uppercase tracking-widest opacity-30">Colophon</h4>
             <p className="font-dm-mono text-[0.7rem] leading-relaxed opacity-40">
-              This site is a digital monograph. Designed for legibility and aesthetic longevity. © 2026.
+              This site is a digital monograph. Designed for legibility and aesthetic longevity. &copy; 2026.
             </p>
           </div>
         </div>
