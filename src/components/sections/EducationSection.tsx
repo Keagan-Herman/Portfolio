@@ -64,7 +64,7 @@ export function EducationSection() {
               )}}
             />
             <p className="font-cormorant italic text-paper/40 mt-8 leading-[1.7]" style={{ fontSize: "1rem" }}>
-              Within a year of graduating I was the sole developer on two live systems
+              Within 2 years of graduating I was the sole developer on two live systems
               serving hundreds of real clients. That&apos;s the education that counts.
             </p>
           </motion.div>

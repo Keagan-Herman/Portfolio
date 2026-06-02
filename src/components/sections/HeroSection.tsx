@@ -46,7 +46,7 @@ export function HeroSection() {
           </div>
           <div className="hidden md:block space-y-1">
             <span className="mono-label block opacity-30 text-[0.6rem]">Location</span>
-            <span className="mono-label block">Cape Town, SA</span>
+            <span className="mono-label block">Port Elizabeth, SA</span>
           </div>
         </div>
         <div className="text-right space-y-1">

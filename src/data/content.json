@@ -63,7 +63,7 @@
     {
       "company": "IOSYSTEMS",
       "role": "Software Engineer",
-      "period": "Sept 2024 — Present",
+      "period": "Sept 2024 - April 2026",
       "description": "Sole developer on two inherited production systems — a nationwide library management platform (200+ institutions) and a full agricultural logistics suite.",
       "highlights": [
         "Built two Flutter mobile apps from scratch: livestock RFID tracking, inventory, field ops, and client data viewing.",
@@ -75,7 +75,7 @@
     {
       "company": "Coega Development Corporation",
       "role": "Web Developer Intern",
-      "period": "Nov 2023 — Sept 2024",
+      "period": "Nov 2023 - Sept 2024",
       "description": "Led a full rebuild of the corporate website in Next.js and TypeScript, replacing a legacy codebase.",
       "highlights": [
         "Built a Python-based AI chatbot to automate internal information queries.",
@@ -102,31 +102,14 @@
       "description": "Aggregates live listings from multiple job APIs, scores each role against a parsed CV using LLM inference (Groq / LLaMA 3.3 70B), generates context-aware cover letters, and tracks the full application pipeline. Behavioural calibration layer adjusts future scoring based on past decisions.",
       "tags": ["Next.js 14", "TypeScript", "Supabase", "Groq / LLaMA 3.3", "Adzuna", "Resend", "Vercel"],
       "status": "Live",
-      "url": "#"
-    },
-    {
-      "id": "setlist",
-      "name": "Setlist",
-      "tagline": "Tactical football formation and match events visualiser.",
-      "description": "Live formation visualiser with fluid position transitions, D3 force-directed pass networks, progressive heat map overlays, and a match timeline scrubber. Renders API-Football data as a reactive canvas rather than a statistics dashboard.",
-      "tags": ["React", "D3.js", "Canvas API", "Framer Motion", "Zustand", "API-Football"],
-      "status": "In Dev",
-      "url": "#"
-    },
-    {
-      "id": "agricultural",
-      "name": "Agricultural Logistics Suite",
-      "tagline": "Production system — RFID/IoT, geospatial mapping, two mobile apps.",
-      "description": "Full-stack agricultural logistics platform with RFID livestock tracking, inventory management, field operations, and client-facing data viewing. Geospatial mapping on PostGIS and .NET rendering Surveyor General polygon data. Two Flutter apps built from scratch. Sole developer, live in production.",
-      "tags": ["C# / .NET", "Flutter", "PostGIS", "PostgreSQL", "RFID / IoT", "REST APIs"],
-      "status": "Production"
+      "url": "https://github.com/Keagan-Herman/jobhunter"
     }
   ],
 
   "education": {
     "institution": "IIE Varsity College",
     "degree": "Diploma in Information Technology & Software Development",
-    "period": "2021 — 2023",
+    "period": "2020 - 2022",
     "ethos": "Formal training gave me the fundamentals. Production systems gave me the judgment."
   },
 
@@ -136,7 +119,7 @@
       { "label": "Email",    "detail": "Hermankeagan171@gmail.com",      "url": "mailto:Hermankeagan171@gmail.com" },
       { "label": "LinkedIn", "detail": "linkedin.com/in/keagan-herman",   "url": "https://linkedin.com/in/keagan-herman" },
       { "label": "GitHub",   "detail": "github.com/Keagan-Herman",        "url": "https://github.com/Keagan-Herman" },
-      { "label": "Phone",    "detail": "067 078 5854 · Cape Town, SA",    "url": "tel:0670785854" }
+      { "label": "Phone",    "detail": "067 078 5854 · Port Elizabeth, SA",    "url": "tel:0670785854" }
     ]
   }
 }

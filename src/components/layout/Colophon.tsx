@@ -48,7 +48,7 @@ export function Colophon() {
           <div className="text-left md:text-right space-y-2">
             <div className="inline-block border-2 border-ink p-4 -rotate-3 hover:rotate-0 transition-transform duration-500">
               <span className="font-playfair font-black text-3xl leading-none">KH</span>
-              <span className="block mono-label text-[0.5rem] mt-1">CAPETOWN / SA</span>
+              <span className="block mono-label text-[0.5rem] mt-1">PORT ELIZABTH / SA</span>
             </div>
           </div>
           <div className="mt-12 md:mt-0 text-left md:text-right">
