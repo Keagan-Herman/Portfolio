@@ -25,7 +25,10 @@ export function SectionIndicator() {
           }
         });
       },
-      { threshold: 0.5 }
+      {
+        threshold: 0,
+        rootMargin: "-40% 0px -50% 0px",
+      }
     );
 
     sections.forEach(({ id }) => {

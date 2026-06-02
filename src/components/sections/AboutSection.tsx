@@ -20,7 +20,7 @@ export function AboutSection() {
     <section
       id="about"
       ref={containerRef}
-      className="relative z-10 bg-paper text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden"
+      className="relative z-10 bg-ink text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden"
     >
       {/* Ink Spread Entry Animation */}
       <motion.div
@@ -57,7 +57,7 @@ export function AboutSection() {
 
         {/* Right — content */}
         <motion.div
-          data-cursor-label="READ"
+
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

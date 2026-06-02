@@ -61,7 +61,7 @@ export function SkillsSection() {
                     key={tag}
                     className="mono-label border border-ink/20 px-2 py-1 opacity-60"
                     style={{ fontSize: "0.6rem" }}
-                    data-cursor-label="SKILL"
+
                   >
                     {tag}
                   </span>

@@ -81,7 +81,7 @@ export function ExperienceSection() {
               className="group grid grid-cols-1 md:grid-cols-[160px_280px_1fr] gap-8 md:gap-12
                          py-16 border-t border-ink/10 relative overflow-hidden"
               data-hover
-              data-cursor-label="READ"
+
             >
               {/* Subtle background highlight on hover */}
               <div className="absolute inset-0 bg-ink/[0.02] translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />

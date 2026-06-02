@@ -41,7 +41,7 @@ export function ContactSection() {
               </p>
               <div className="h-px w-24 bg-terracotta/40" />
               <p className="font-dm-mono text-sm opacity-40 uppercase tracking-widest leading-loose">
-                Availability: Q2 2026<br />
+                Availability: Open to new opportunities<br />
                 Status: Open to Collaboration
               </p>
             </div>
@@ -60,7 +60,7 @@ export function ContactSection() {
 
             <div className="relative bg-[#fcfaf5] border border-ink/5 p-12 md:p-16 shadow-[0_40px_100px_-20px_rgba(17,16,9,0.08)]">
               {/* Card Texture Overlay */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/textures/paper-fibers.png')]" />
 
               <div className="space-y-12">
                 {content.contact.links.map((link, i) => (
@@ -69,7 +69,7 @@ export function ContactSection() {
                     href={link.url}
                     className="group flex flex-col gap-2 transition-transform hover:-translate-y-1"
                     data-hover
-                    data-cursor-label="TALK"
+
                   >
                     <div className="flex items-end justify-between border-b border-ink/10 pb-4">
                       <span className="mono-label text-[0.65rem] opacity-30 uppercase tracking-[0.2em]">0{i+1} — {link.label}</span>
@@ -127,7 +127,7 @@ export function ContactSection() {
           <div className="space-y-4">
             <h4 className="mono-label text-[0.65rem] uppercase tracking-widest opacity-30">Colophon</h4>
             <p className="font-dm-mono text-[0.7rem] leading-relaxed opacity-40">
-              This site is a digital monograph. Designed for legibility and aesthetic longevity. &copy; 2026.
+              This site is a digital monograph. Designed for legibility and aesthetic longevity. &copy; {new Date().getFullYear()}.
             </p>
           </div>
         </div>

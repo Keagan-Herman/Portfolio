@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
 import { useRef, useState, useEffect } from "react";
@@ -13,6 +13,7 @@ const SPRING = { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const };
 export function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -23,9 +24,9 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], shouldReduceMotion ? [1, 1] : [1, 0]);
 
   return (
     <header
@@ -78,9 +79,9 @@ export function HeroSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-end pb-12 pt-12">
         {/* Left — name + CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...SPRING, delay: 0.1 }}
+          transition={{ ...SPRING, delay: shouldReduceMotion ? 0 : 0.1 }}
           className="pr-0 md:pr-12"
         >
           <div className="flex items-center gap-4 mb-10">
@@ -125,9 +126,9 @@ export function HeroSection() {
 
         {/* Right — summary + stats */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...SPRING, delay: 0.3 }}
+          transition={{ ...SPRING, delay: shouldReduceMotion ? 0 : 0.3 }}
           className="border-l border-ink/10 pl-8 md:pl-16 mt-12 md:mt-0"
         >
           <p
