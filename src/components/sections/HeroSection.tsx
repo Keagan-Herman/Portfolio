@@ -89,7 +89,7 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="font-playfair font-black leading-[0.88] tracking-[-0.05em] mb-4"
+            className="font-playfair font-black leading-[0.85] tracking-[-0.06em] mb-4"
             style={{ fontSize: "clamp(5rem, 12vw, 12rem)" }}
           >
             <motion.span style={{ y: y1 }} className="block">
@@ -101,8 +101,8 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="font-playfair italic opacity-45 mb-10"
-            style={{ fontSize: "clamp(1.2rem, 2.5vw, 2rem)" }}
+            className="font-playfair italic opacity-45 mb-10 tracking-tight"
+            style={{ fontSize: "clamp(1.2rem, 2.5vw, 2rem)", lineHeight: 1.1 }}
           >
             {content.role}
           </p>
@@ -131,8 +131,8 @@ export function HeroSection() {
           className="border-l border-ink/10 pl-8 md:pl-16 mt-12 md:mt-0"
         >
           <p
-            className="font-cormorant opacity-75 leading-[1.75] mb-12"
-            style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.35rem)" }}
+            className="font-cormorant opacity-75 leading-[1.85] mb-12"
+            style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)" }}
           >
             {content.summary}
           </p>

@@ -26,15 +26,39 @@ export const useCursor = () => {
         setIsVisible(true);
         isVisibleRef.current = true;
       }
-      dotX.set(e.clientX);
-      dotY.set(e.clientY);
-      rawX.set(e.clientX);
-      rawY.set(e.clientY);
+
+      let x = e.clientX;
+      let y = e.clientY;
 
       const target = e.target as HTMLElement;
       const hoverElement = target.closest('a, button, [data-hover]') as HTMLElement;
+
+      // Magnetic Pull Logic
+      if (hoverElement) {
+        const rect = hoverElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // Pull towards center by 15%
+        x += (centerX - x) * 0.15;
+        y += (centerY - y) * 0.15;
+      }
+
+      dotX.set(x);
+      dotY.set(y);
+      rawX.set(x);
+      rawY.set(y);
+
       setIsHovered(!!hoverElement);
       setCursorLabel(hoverElement?.getAttribute("data-cursor-label") || null);
+
+      // Dynamic Blend Mode based on section theme
+      const section = target.closest('section, header') as HTMLElement;
+      if (section) {
+        const isDark = section.classList.contains('bg-ink') ||
+                       window.getComputedStyle(section).backgroundColor === 'rgb(17, 16, 9)';
+        setBlendMode(isDark ? "difference" : "multiply");
+      }
     };
 
     window.addEventListener("mousemove", moveCursor);

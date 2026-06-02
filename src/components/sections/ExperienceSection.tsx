@@ -1,29 +1,44 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
+import { useRef } from "react";
 
 const content = contentData as Content;
 
 export function ExperienceSection() {
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yGhost = useTransform(scrollYProgress, [0, 1], [-50, 150]);
+
   return (
-    <section id="experience" className="relative z-10 bg-[#ece6d8] py-24 md:py-40 px-8 md:px-24">
+    <section
+      id="experience"
+      ref={containerRef}
+      className="relative z-10 bg-[#ece6d8] py-24 md:py-40 px-8 md:px-24"
+    >
       <div className="max-w-screen-xl mx-auto">
 
         {/* Header - Report Title Style */}
         <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-16 items-start mb-24">
-          <div
+          <motion.div
             className="font-playfair font-black leading-[0.85] select-none pointer-events-none hidden md:block"
             style={{
               fontSize: "clamp(7rem, 15vw, 15rem)",
               color: "transparent",
               WebkitTextStroke: "1px rgba(17,16,9,0.12)",
+              filter: "url(#letterpress)",
+              y: yGhost
             }}
             aria-hidden="true"
           >
             02
-          </div>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,7 +64,13 @@ export function ExperienceSection() {
         </div>
 
         {/* Experience items - The Report Layout */}
-        <div className="border-b border-ink/10">
+        <div className="border-b border-ink/10 relative">
+          {/* Marginalia for the list */}
+          <div className="absolute -left-12 top-0 h-full hidden xl:flex flex-col justify-between py-24 opacity-20 pointer-events-none">
+            <div className="mono-label [writing-mode:vertical-lr] rotate-180 text-[0.6rem] tracking-[0.4em]">CHRONOLOGICAL LOG</div>
+            <div className="mono-label [writing-mode:vertical-lr] rotate-180 text-[0.6rem] tracking-[0.4em]">SYSTEMS ARCHITECTURE</div>
+          </div>
+
           {content.experience.map((item, i) => (
             <motion.div
               key={item.company}
@@ -103,6 +124,12 @@ export function ExperienceSection() {
 
               {/* Column 3: Details - The "Executive Summary" */}
               <div className="relative md:pl-12 md:border-l border-ink/5">
+                {i === 0 && (
+                   <p className="font-cormorant text-2xl leading-relaxed text-ink/60 italic mb-10 max-w-xl">
+                      <span className="float-left text-[4rem] leading-[0.8] font-playfair font-black pr-3 pt-1 text-terracotta not-italic select-none">S</span>
+                      ince entering the production landscape, I have focused on building systems that survive the real world. Every entry below represents a commitment to technical ownership and architectural integrity.
+                   </p>
+                )}
                 <ul className="space-y-6">
                   {item.highlights.map((point, j) => (
                     <li key={j} className="group/item flex gap-6 font-cormorant text-xl leading-relaxed text-ink/80">

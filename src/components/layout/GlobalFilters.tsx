@@ -9,25 +9,25 @@ export function GlobalFilters() {
       <defs>
         {/* Ink Bleed Filter: Subtle blur + contrast to simulate ink spreading into paper fibers */}
         <filter id="ink-bleed">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="blur" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.45" result="blur" />
           <feColorMatrix
             in="blur"
             type="matrix"
             values="1 0 0 0 0
                     0 1 0 0 0
                     0 0 1 0 0
-                    0 0 0 18 -7"
+                    0 0 0 20 -8"
             result="ink-bleed"
           />
           <feComposite in="SourceGraphic" in2="ink-bleed" operator="atop" />
         </filter>
 
-        {/* Paper Grain Filter: Fractal noise for a more tactile surface */}
+        {/* Paper Grain Filter: High-frequency fractal noise */}
         <filter id="paper-grain-filter">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.65"
-            numOctaves="3"
+            baseFrequency="0.75"
+            numOctaves="4"
             stitchTiles="stitch"
           />
           <feColorMatrix type="saturate" values="0" />
@@ -36,6 +36,35 @@ export function GlobalFilters() {
             <feFuncG type="linear" slope="0.1" />
             <feFuncB type="linear" slope="0.1" />
           </feComponentTransfer>
+        </filter>
+
+        {/* Paper Fibers Filter: Low-frequency fractal noise for organic variations */}
+        <filter id="paper-fibers-filter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.02"
+            numOctaves="2"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+          <feComponentTransfer>
+            <feFuncR type="linear" slope="0.05" />
+            <feFuncG type="linear" slope="0.05" />
+            <feFuncB type="linear" slope="0.05" />
+          </feComponentTransfer>
+        </filter>
+
+        {/* Letterpress / Inner Shadow Filter for Ghost Numerals */}
+        <filter id="letterpress">
+          <feOffset dx="1" dy="1" />
+          <feGaussianBlur stdDeviation="1.5" result="blur" />
+          <feFlood floodColor="black" floodOpacity="0.4" result="color" />
+          <feComposite operator="out" in="SourceGraphic" in2="blur" result="shadow" />
+          <feComposite operator="in" in="color" in2="shadow" result="finalShadow" />
+          <feMerge>
+            <feMergeNode in="SourceGraphic" />
+            <feMergeNode in="finalShadow" />
+          </feMerge>
         </filter>
       </defs>
     </svg>

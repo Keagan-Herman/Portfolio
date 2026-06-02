@@ -19,8 +19,8 @@ export const CustomCursor = () => {
           translateY: "-50%",
           width: 8,
           height: 8,
-          backgroundColor: "var(--color-ink)",
-          mixBlendMode: blendMode as any,
+          backgroundColor: blendMode === "difference" ? "var(--color-paper)" : "var(--color-ink)",
+          mixBlendMode: blendMode as "difference" | "multiply",
         }}
         animate={{ scale: isHovered ? 1.8 : 1 }}
         transition={{ duration: 0.15 }}
@@ -35,14 +35,17 @@ export const CustomCursor = () => {
           translateY: "-50%",
           width: 32,
           height: 32,
-          border: `1px solid var(--color-ink)`,
+          border: `1px solid ${blendMode === "difference" ? "var(--color-paper)" : "var(--color-ink)"}`,
+          mixBlendMode: blendMode as "difference" | "multiply",
           opacity: 0.4,
         }}
         animate={{
-          borderColor: isHovered ? "var(--color-terracotta)" : "var(--color-ink)",
-          opacity: isHovered ? 0.7 : 0.4,
+          borderColor: isHovered
+            ? "var(--color-terracotta)"
+            : (blendMode === "difference" ? "var(--color-paper)" : "var(--color-ink)"),
+          opacity: isHovered ? 0.8 : 0.4,
           scale: isHovered ? 2.5 : 1,
-          borderWidth: isHovered ? 1 : 1,
+          borderWidth: isHovered ? 1.5 : 1,
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -53,7 +56,7 @@ export const CustomCursor = () => {
             scale: isHovered && cursorLabel ? 1 : 0.5,
           }}
           className="mono-label text-terracotta"
-          style={{ fontSize: '10px', letterSpacing: '0.1em' }}
+          style={{ fontSize: '10px', letterSpacing: '0.15em', fontWeight: 'bold' }}
         >
           {cursorLabel || "VIEW"}
         </motion.span>
