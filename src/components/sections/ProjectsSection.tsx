@@ -64,7 +64,7 @@ export function ProjectsSection() {
                 className="group grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] border-t border-ink/10
                            relative transition-colors duration-200 cursor-pointer"
                 data-hover
-                data-cursor-label="VIEW"
+
               >
                 {/* Framer Motion Shared Hover Background */}
                 <AnimatePresence>

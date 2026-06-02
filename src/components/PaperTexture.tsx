@@ -19,7 +19,7 @@ export function PaperTexture() {
 
       {/* Dynamic Animated Grain - Subtle flicker for "Living Document" feel */}
       <div className="fixed inset-0 pointer-events-none z-[100] opacity-[0.02] mix-blend-multiply overflow-hidden">
-        <div className="absolute inset-[-200%] w-[400%] h-[400%] bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] animate-grain" />
+        <div className="absolute inset-[-200%] w-[400%] h-[400%] bg-[url('/textures/natural-paper.png')] animate-grain" />
       </div>
 
       {/* Subtle vignettes for depth */}

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, DM_Mono } from "next/font/google";
 import "./globals.css";
-import { CustomCursor } from "@/components/CustomCursor";
 import { PaperTexture } from "@/components/PaperTexture";
 import { GlobalFilters } from "@/components/layout/GlobalFilters";
 
@@ -29,12 +28,30 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://keagan-herman.vercel.app'),
   title: "Keagan Herman — Software Engineer",
   description: "Full-stack software engineer specialising in C#/.NET, Flutter, React, and high-performance frontend systems. Currently at IOSYSTEMS.",
   openGraph: {
     title: "Keagan Herman — Software Engineer",
     description: "Full-stack software engineer with production systems serving 200+ institutions.",
+    url: 'https://keagan-herman.vercel.app',
+    siteName: 'Keagan Herman Portfolio',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Keagan Herman — Software Engineer',
+      },
+    ],
+    locale: 'en_GB',
     type: "website",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Keagan Herman — Software Engineer",
+    description: "Full-stack software engineer with production systems serving 200+ institutions.",
+    images: ['/og-image.png'],
   },
 };
 
@@ -50,7 +67,6 @@ export default function RootLayout({
       >
         <GlobalFilters />
         <PaperTexture />
-        <CustomCursor />
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
 
@@ -8,24 +8,27 @@ const content = contentData as Content;
 
 export function EducationSection() {
   const edu = content.education;
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="education" className="relative z-10 bg-paper text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden">
+    <section id="education" className="relative z-10 bg-ink text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden">
       {/* Ink Spread Entry Animation */}
-      <motion.div
-        initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
-        whileInView={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-        viewport={{ once: true }}
-        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute inset-0 bg-ink"
-      />
+      {!shouldReduceMotion && (
+        <motion.div
+          initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+          whileInView={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 bg-ink"
+        />
+      )}
 
       <div className="max-w-screen-xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
 
           {/* Left */}
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -46,10 +49,10 @@ export function EducationSection() {
 
           {/* Right */}
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: shouldReduceMotion ? 0 : 0.2 }}
             className="pl-0 md:pl-16 border-l-0 md:border-l border-paper/10"
           >
             <p
