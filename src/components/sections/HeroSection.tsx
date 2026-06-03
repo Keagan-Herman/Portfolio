@@ -8,7 +8,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const content = contentData as Content;
 
-const SPRING = { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const };
+const SPRING = { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const };
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -24,9 +24,10 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], shouldReduceMotion ? [1, 1] : [1, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 150]);
+  const yAside = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], shouldReduceMotion ? [1, 1] : [1, 0]);
 
   return (
     <header
@@ -36,8 +37,11 @@ export function HeroSection() {
     >
       {/* Editorial Masthead Top Bar */}
       <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ...SPRING, delay: 0.2 }}
         style={{ opacity }}
-        className="flex justify-between items-center py-8 border-b border-ink/10"
+        className="flex justify-between items-center py-8 border-b border-ink/10 relative"
       >
         <div className="flex gap-12">
           <div className="space-y-1">
@@ -49,6 +53,17 @@ export function HeroSection() {
             <span className="mono-label block">Port Elizabeth, SA</span>
           </div>
         </div>
+
+        {/* Floating Rule Line */}
+        <div className="absolute bottom-[-1px] left-0 w-full h-[1px] overflow-hidden">
+           <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: "0%" }}
+              transition={{ duration: 1.5, ease: "circOut", delay: 0.5 }}
+              className="w-full h-full bg-terracotta"
+           />
+        </div>
+
         <div className="text-right space-y-1">
           <span className="mono-label block opacity-30 text-[0.6rem]">Date Shipped</span>
           <span className="mono-label block">
@@ -62,7 +77,10 @@ export function HeroSection() {
 
       {/* Marginalia - Side Notes */}
       <motion.aside
-        style={{ y: y2, opacity }}
+        style={{ y: yAside, opacity }}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ ...SPRING, delay: 0.6 }}
         className="absolute left-6 top-1/3 hidden lg:block w-32 space-y-8"
       >
         <div className="space-y-2">
@@ -72,6 +90,10 @@ export function HeroSection() {
             PRECISION AND<br />
             AESTHETIC LONGEVITY.
           </p>
+        </div>
+        <div className="space-y-2 pt-12">
+           <span className="mono-label text-[0.5rem] opacity-20 block [writing-mode:vertical-lr] rotate-180">EDITORIAL_AUDIT</span>
+           <div className="w-px h-12 bg-ink/10" />
         </div>
       </motion.aside>
 
@@ -84,9 +106,21 @@ export function HeroSection() {
           transition={{ ...SPRING, delay: shouldReduceMotion ? 0 : 0.1 }}
           className="pr-0 md:pr-12"
         >
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-10 h-px bg-terracotta" />
-            <span className="mono-label opacity-45">Full-Stack Software Engineer</span>
+          <div className="flex items-center gap-4 mb-10 overflow-hidden">
+            <motion.div
+               initial={{ x: -40, opacity: 0 }}
+               animate={{ x: 0, opacity: 1 }}
+               transition={{ ...SPRING, delay: 0.8 }}
+               className="w-10 h-px bg-terracotta"
+            />
+            <motion.span
+               initial={{ y: 20, opacity: 0 }}
+               animate={{ y: 0, opacity: 0.45 }}
+               transition={{ ...SPRING, delay: 0.9 }}
+               className="mono-label"
+            >
+              Full-Stack Software Engineer
+            </motion.span>
           </div>
 
           <h1
@@ -101,12 +135,15 @@ export function HeroSection() {
             </motion.span>
           </h1>
 
-          <p
-            className="font-playfair italic opacity-45 mb-10 tracking-tight"
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.45 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="font-playfair italic mb-10 tracking-tight"
             style={{ fontSize: "clamp(1.2rem, 2.5vw, 2rem)", lineHeight: 1.1 }}
           >
             {content.role}
-          </p>
+          </motion.p>
 
           <div className="flex flex-wrap items-center gap-4">
             <MagneticButton
@@ -129,8 +166,17 @@ export function HeroSection() {
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...SPRING, delay: shouldReduceMotion ? 0 : 0.3 }}
-          className="border-l border-ink/10 pl-8 md:pl-16 mt-12 md:mt-0"
+          className="border-l border-ink/10 pl-8 md:pl-16 mt-12 md:mt-0 relative"
         >
+          {/* Vertical indicator for summary */}
+          <motion.div
+            initial={{ height: 0 }}
+            whileInView={{ height: 48 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1, ease: "circOut" }}
+            className="absolute left-0 top-0 w-[2px] bg-terracotta"
+          />
+
           <p
             className="font-cormorant opacity-75 leading-[1.85] mb-12"
             style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)" }}
@@ -144,8 +190,14 @@ export function HeroSection() {
               { num: "200+", label: "Institutions Served" },
               { num: "5",    label: "Live Projects Shipped" },
               { num: "Full", label: "Stack, Front to Back" },
-            ].map(({ num, label }) => (
-              <div key={label} className="relative pt-6">
+            ].map(({ num, label }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ ...SPRING, delay: 1.4 + (i * 0.1) }}
+                className="relative pt-6"
+              >
                 <div className="absolute top-0 left-0 w-full h-px bg-terracotta/40" />
                 <div className="absolute top-0 left-0 w-1/4 h-px bg-terracotta" />
                 <div
@@ -155,7 +207,7 @@ export function HeroSection() {
                   {num}
                 </div>
                 <div className="mono-label opacity-40 leading-tight max-w-[120px]">{label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -163,9 +215,9 @@ export function HeroSection() {
 
       {/* Bottom bar */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
         className="flex items-center justify-between py-6 border-t border-ink/10"
       >
         <div className="flex gap-8">
@@ -179,7 +231,7 @@ export function HeroSection() {
             </a>
           ))}
         </div>
-        <span className="mono-label opacity-30">Cape Town, South Africa</span>
+        <span className="mono-label opacity-30">Port Elizabeth, South Africa</span>
       </motion.div>
     </header>
   );
