@@ -163,8 +163,8 @@ export function ExperienceSection() {
             End of Record // REF: {new Date().getFullYear()}-EXP-LOG
           </div>
           <div className="flex gap-8">
-            <div className="mono-label text-[0.65rem]">LAT: 40.7128° N</div>
-            <div className="mono-label text-[0.65rem]">LONG: 74.0060° W</div>
+            <div className="mono-label text-[0.65rem]">LAT: 33.9608° S</div>
+            <div className="mono-label text-[0.65rem]">LONG: 25.6022° E</div>
           </div>
         </div>
       </div>

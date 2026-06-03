@@ -22,8 +22,17 @@ export function PaperTexture() {
         <div className="absolute inset-[-200%] w-[400%] h-[400%] bg-[url('/textures/natural-paper.png')] animate-grain" />
       </div>
 
-      {/* Subtle vignettes for depth */}
-      <div className="fixed inset-0 pointer-events-none z-[101] shadow-[inset_0_0_200px_rgba(17,16,9,0.08)]" />
+      {/* Subtle vignettes for depth and page curvature */}
+      <div className="fixed inset-0 pointer-events-none z-[101] overflow-hidden">
+         {/* Overall soft vignette */}
+         <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(17,16,9,0.08)]" />
+
+         {/* Inner "binding" shadow simulation - subtle dark strip on the left */}
+         <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-ink/5 to-transparent opacity-50" />
+
+         {/* Right edge soft lift */}
+         <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-ink/2 to-transparent" />
+      </div>
     </>
   );
 }
