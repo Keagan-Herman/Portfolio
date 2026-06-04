@@ -7,16 +7,30 @@ export function GlobalFilters() {
       aria-hidden="true"
     >
       <defs>
-        {/* Ink Bleed Filter: Subtle blur + contrast to simulate ink spreading into paper fibers */}
+        {/* Ink Bleed Filter: Subtle blur + displacement + contrast to simulate ink spreading into paper fibers */}
         <filter id="ink-bleed">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="0.45" result="blur" />
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.04"
+            numOctaves="3"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="2"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="displaced"
+          />
+          <feGaussianBlur in="displaced" stdDeviation="0.4" result="blur" />
           <feColorMatrix
             in="blur"
             type="matrix"
             values="1 0 0 0 0
                     0 1 0 0 0
                     0 0 1 0 0
-                    0 0 0 20 -8"
+                    0 0 0 18 -7"
             result="ink-bleed"
           />
           <feComposite in="SourceGraphic" in2="ink-bleed" operator="atop" />
@@ -56,9 +70,9 @@ export function GlobalFilters() {
 
         {/* Letterpress / Inner Shadow Filter for Ghost Numerals */}
         <filter id="letterpress">
-          <feOffset dx="1" dy="1" />
-          <feGaussianBlur stdDeviation="1.5" result="blur" />
-          <feFlood floodColor="black" floodOpacity="0.4" result="color" />
+          <feOffset dx="0.5" dy="0.5" />
+          <feGaussianBlur stdDeviation="1" result="blur" />
+          <feFlood floodColor="black" floodOpacity="0.3" result="color" />
           <feComposite operator="out" in="SourceGraphic" in2="blur" result="shadow" />
           <feComposite operator="in" in="color" in2="shadow" result="finalShadow" />
           <feMerge>
