@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
-import { useState } from "react";
 
 const content = contentData as Content;
 
@@ -24,13 +24,12 @@ export function ProjectsSection() {
         >
           <div className="space-y-4">
              <div className="flex items-center gap-4">
-              <span className="mono-label text-terracotta">Section 05</span>
-              <div className="h-px w-8 bg-terracotta/30" />
+              <div className="w-3 h-px bg-terracotta" />
               <span className="mono-label opacity-30">REF: PROJECT_MANIFEST</span>
             </div>
             <h2
               className="font-playfair font-bold leading-[0.9] tracking-[-0.01em]"
-              style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
+              style={{ fontSize: "clamp(3rem, 6vw, 6rem)", textWrap: "balance" } as React.CSSProperties}
             >
               Selected<br />
               <em className="font-normal italic">Artifacts</em>
@@ -106,7 +105,7 @@ export function ProjectsSection() {
                     >
                       {project.name}
                     </h3>
-                    <p className="font-playfair italic opacity-50 mb-6" style={{ fontSize: "1rem" }}>
+                    <p className="font-playfair italic opacity-70 mb-6" style={{ fontSize: "1rem" }}>
                       {project.tagline}
                     </p>
                     <p className="font-cormorant opacity-65 max-w-2xl mb-8 leading-relaxed" style={{ fontSize: "1.05rem" }}>
@@ -126,6 +125,12 @@ export function ProjectsSection() {
                         <span className="mono-label opacity-30 py-1" style={{ fontSize: "0.58rem" }}>+{project.tags.length - 4} MORE</span>
                       )}
                     </div>
+                    {isLinked && (
+                      <div className="flex items-center gap-2 mt-6">
+                        <span className="mono-label text-terracotta" style={{ fontSize: "0.65rem" }}>View on GitHub</span>
+                        <span className="text-terracotta text-sm leading-none">↗</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 

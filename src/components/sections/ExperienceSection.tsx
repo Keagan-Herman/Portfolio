@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
-import { useRef } from "react";
 
 const content = contentData as Content;
 
@@ -44,12 +44,12 @@ export function ExperienceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-4 border-l-2 border-terracotta pl-8"
+            className="pt-4"
           >
             <div className="mono-label text-terracotta mb-2 tracking-[0.3em] uppercase text-xs">Technical Dossier</div>
             <h2
               className="font-playfair font-bold leading-[0.9] tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", textWrap: "balance" } as React.CSSProperties}
             >
               Career<br />
               <em className="font-normal italic">Chronology</em>
@@ -126,8 +126,8 @@ export function ExperienceSection() {
               <div className="relative md:pl-12 md:border-l border-ink/5">
                 {i === 0 && (
                    <p className="font-cormorant text-2xl leading-relaxed text-ink/60 italic mb-10 max-w-xl">
-                      <span className="float-left text-[4rem] leading-[0.8] font-playfair font-black pr-3 pt-1 text-terracotta not-italic select-none">S</span>
-                      ince entering the production landscape, I have focused on building systems that survive the real world. Every entry below represents a commitment to technical ownership and architectural integrity.
+                      <span className="float-left text-[4rem] leading-[0.8] font-playfair font-black pr-3 pt-1 text-terracotta not-italic select-none">B</span>
+                      oth entries below are systems I inherited and owned, not tickets I closed. Real users, real load, no documentation waiting for me.
                    </p>
                 )}
                 <ul className="space-y-6">

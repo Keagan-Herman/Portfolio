@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
-import { useRef } from "react";
 
 const content = contentData as Content;
 
@@ -79,7 +79,7 @@ export function AboutSection() {
             }}
             className="mono-label text-terracotta block mb-6"
           >
-            01 — About
+            Biography
           </motion.span>
 
           <motion.h2
@@ -88,7 +88,7 @@ export function AboutSection() {
               visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
             }}
             className="font-playfair italic font-normal text-paper leading-[1.1] mb-10 tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)" }}
+            style={{ fontSize: "clamp(1.8rem, 3vw, 3rem)", textWrap: "balance" } as React.CSSProperties}
           >
             {content.about.headline}
           </motion.h2>
@@ -96,14 +96,14 @@ export function AboutSection() {
           {/* Callout block */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, x: -10 },
-              visible: { opacity: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
             }}
-            className="border-l-2 border-terracotta pl-6 mb-12"
+            className="border-t border-b border-paper/10 py-8 mb-12"
           >
             <p
-              className="font-playfair italic text-paper/90 leading-[1.3] tracking-tight"
-              style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)" }}
+              className="font-playfair italic text-paper leading-[1.3] tracking-tight"
+              style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.7rem)" }}
             >
               {content.about.callout}
             </p>

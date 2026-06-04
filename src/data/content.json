@@ -2,11 +2,11 @@
   "firstName": "Keagan",
   "lastName": "Herman",
   "role": "Full-Stack Software Engineer",
-  "summary": "Sole lead developer on two live production systems serving 200+ institutions. I build things that handle real load, real users, and real consequences — then I make them beautiful.",
+  "summary": "Sole lead developer on two live production systems serving 200+ institutions. I build things that handle real load, real users, and real consequences; then I make them beautiful.",
 
   "about": {
-    "headline": "I don't just close tickets. I own the outcome.",
-    "callout": "The kind of engineer who inherits a legacy system on Monday and is shipping meaningful improvements by Friday — without hand-holding.",
+    "headline": "Two production systems. One developer. 200+ institutions depending on both.",
+    "callout": "The kind of engineer who inherits a legacy system on Monday and is shipping meaningful improvements by Friday, without hand-holding.",
     "body": [
       "At IOSYSTEMS, I became the sole developer on two production systems — a nationwide library management platform used by 200+ institutions and a full agricultural logistics suite with RFID/IoT integrations, geospatial mapping, and two Flutter mobile apps I built from scratch.",
       "I work directly with clients, translate ambiguous requirements into clean architecture, and deliver across the full stack without needing the problem pre-solved for me.",

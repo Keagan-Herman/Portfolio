@@ -34,7 +34,7 @@ export function EducationSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="border-r-0 md:border-r border-paper/10 pr-0 md:pr-16"
           >
-            <span className="mono-label text-terracotta block mb-8">03 — Education</span>
+            <span className="mono-label text-terracotta block mb-8">Academic Record</span>
             <h3
               className="font-playfair font-bold text-paper leading-[1.1] mb-2"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}

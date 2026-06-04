@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
@@ -21,20 +22,19 @@ export function SkillsSection() {
         >
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <span className="mono-label text-terracotta">Section 03</span>
-              <div className="h-px w-8 bg-terracotta/30" />
+              <div className="w-3 h-px bg-terracotta" />
               <span className="mono-label opacity-30">REF: STACK-V1.02</span>
             </div>
             <h2
               className="font-playfair font-bold leading-[0.9] tracking-[-0.01em]"
-              style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
+              style={{ fontSize: "clamp(3rem, 6vw, 6rem)", textWrap: "balance" } as React.CSSProperties}
             >
               Technical<br />
               <em className="font-normal italic">Index</em>
             </h2>
           </div>
           <div className="max-w-xs space-y-4">
-            <p className="font-cormorant opacity-55" style={{ fontSize: "0.95rem", lineHeight: 1.65 }}>
+            <p className="font-cormorant opacity-75" style={{ fontSize: "0.95rem", lineHeight: 1.65 }}>
               A working vocabulary built on production systems, not tutorials.
               Every item here has shipped in a real product.
             </p>

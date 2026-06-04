@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const content = contentData as Content;
@@ -154,8 +154,8 @@ export function HeroSection() {
 
           <motion.h1
             variants={inkPressVariants}
-            className="font-playfair font-black leading-[0.85] tracking-[-0.06em] mb-4 origin-top"
-            style={{ fontSize: "clamp(5rem, 12vw, 12rem)" }}
+            className="font-playfair font-black leading-[0.85] tracking-[-0.03em] mb-4 origin-top"
+            style={{ fontSize: "clamp(4rem, 8vw, 6rem)", textWrap: "balance" } as React.CSSProperties}
           >
             <motion.span style={{ y: y1 }} className="block">
               {content.firstName}
@@ -213,30 +213,22 @@ export function HeroSection() {
             {content.summary}
           </motion.p>
 
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12">
+          <motion.div variants={itemVariants} className="mt-10 border-t border-ink/10">
             {[
-              { num: "2+",   label: "Years Production Experience" },
-              { num: "200+", label: "Institutions Served" },
-              { num: "5",    label: "Live Projects Shipped" },
-              { num: "Full", label: "Stack, Front to Back" },
-            ].map(({ num, label }) => (
-              <motion.div
+              ["Years in production", "2+"],
+              ["Institutions served", "200+"],
+              ["Live systems shipped", "5"],
+              ["Discipline", "Full stack"],
+            ].map(([label, value]) => (
+              <div
                 key={label}
-                variants={itemVariants}
-                className="relative pt-6"
+                className="flex items-baseline justify-between py-3 border-b border-ink/[0.07]"
               >
-                <div className="absolute top-0 left-0 w-full h-px bg-terracotta/40" />
-                <div className="absolute top-0 left-0 w-1/4 h-px bg-terracotta" />
-                <div
-                  className="font-playfair font-black leading-none mb-2"
-                  style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.05em" }}
-                >
-                  {num}
-                </div>
-                <div className="mono-label opacity-40 leading-tight max-w-[120px]">{label}</div>
-              </motion.div>
+                <span className="mono-label opacity-40">{label}</span>
+                <span className="mono-label text-terracotta font-bold">{value}</span>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 

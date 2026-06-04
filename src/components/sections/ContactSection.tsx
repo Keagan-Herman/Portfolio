@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
@@ -29,8 +30,8 @@ export function ContactSection() {
           >
             <div className="mono-label text-terracotta mb-6 tracking-[0.4em] uppercase text-xs">Conclusion</div>
             <h2
-              className="font-playfair font-black leading-[0.85] tracking-[-0.04em] mb-8"
-              style={{ fontSize: "clamp(4rem, 10vw, 10rem)" }}
+              className="font-playfair font-black leading-[0.85] tracking-[-0.03em] mb-8"
+              style={{ fontSize: "clamp(3rem, 7vw, 6rem)", textWrap: "balance" } as React.CSSProperties}
             >
               Let&apos;s<br />
               <span className="italic font-normal">Connect.</span>
@@ -58,7 +59,7 @@ export function ContactSection() {
             {/* Card Shadow/Depth Effect */}
             <div className="absolute inset-4 bg-ink/5 blur-3xl rounded-xl -rotate-2" />
 
-            <div className="relative bg-[#fcfaf5] border border-ink/5 p-12 md:p-16 shadow-[0_40px_100px_-20px_rgba(17,16,9,0.08)]">
+            <div className="relative bg-[#fcfaf5] border border-ink/8 p-12 md:p-16">
               {/* Card Texture Overlay */}
               <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/textures/paper-fibers.png')]" />
 
@@ -94,44 +95,6 @@ export function ContactSection() {
         </div>
       </div>
 
-      {/* The Colophon (Technical Footer) */}
-      <div className="mt-32 md:mt-64 border-t border-ink/10 pt-16 max-w-screen-xl mx-auto px-4 md:px-0">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-          <div className="space-y-4">
-            <h4 className="mono-label text-[0.65rem] uppercase tracking-widest opacity-30">Identity</h4>
-            <p className="font-playfair font-bold text-lg text-ink/80">
-              {content.firstName} {content.lastName}
-            </p>
-            <p className="font-cormorant italic opacity-50">Designer & Engineer</p>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="mono-label text-[0.65rem] uppercase tracking-widest opacity-30">Typefaces</h4>
-            <ul className="font-dm-mono text-[0.7rem] leading-relaxed opacity-60">
-              <li>Playfair Display (Serif)</li>
-              <li>Cormorant Garamond (Serif)</li>
-              <li>DM Mono (Monospace)</li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="mono-label text-[0.65rem] uppercase tracking-widest opacity-30">Stack</h4>
-            <ul className="font-dm-mono text-[0.7rem] leading-relaxed opacity-60">
-              <li>Next.js 15 (App Router)</li>
-              <li>Tailwind CSS v4</li>
-              <li>Framer Motion</li>
-              <li>TypeScript</li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="mono-label text-[0.65rem] uppercase tracking-widest opacity-30">Colophon</h4>
-            <p className="font-dm-mono text-[0.7rem] leading-relaxed opacity-40">
-              This site is a digital monograph. Designed for legibility and aesthetic longevity. &copy; {new Date().getFullYear()}.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
