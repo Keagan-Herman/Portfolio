@@ -10,6 +10,45 @@ const content = contentData as Content;
 
 const SPRING = { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { ...SPRING },
+  },
+};
+
+const inkPressVariants = {
+  hidden: {
+    clipPath: "inset(0% 0% 100% 0%)",
+    opacity: 0,
+    scale: 1.02,
+  },
+  visible: {
+    clipPath: "inset(0% 0% 0% 0%)",
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.5,
+      ease: [0.19, 1, 0.22, 1] as const,
+      delay: 0.5,
+    },
+  },
+};
+
 export function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
@@ -37,21 +76,21 @@ export function HeroSection() {
     >
       {/* Editorial Masthead Top Bar */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ ...SPRING, delay: 0.2 }}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
         style={{ opacity }}
         className="flex justify-between items-center py-8 border-b border-ink/10 relative"
       >
         <div className="flex gap-12">
-          <div className="space-y-1">
+          <motion.div variants={itemVariants} className="space-y-1">
             <span className="mono-label block opacity-30 text-[0.6rem]">Volume</span>
             <span className="mono-label block font-bold">No. 01 — Portfolio</span>
-          </div>
-          <div className="hidden md:block space-y-1">
+          </motion.div>
+          <motion.div variants={itemVariants} className="hidden md:block space-y-1">
             <span className="mono-label block opacity-30 text-[0.6rem]">Location</span>
             <span className="mono-label block">Port Elizabeth, SA</span>
-          </div>
+          </motion.div>
         </div>
 
         {/* Floating Rule Line */}
@@ -64,7 +103,7 @@ export function HeroSection() {
            />
         </div>
 
-        <div className="text-right space-y-1">
+        <motion.div variants={itemVariants} className="text-right space-y-1">
           <span className="mono-label block opacity-30 text-[0.6rem]">Date Shipped</span>
           <span className="mono-label block">
             {mounted
@@ -72,7 +111,7 @@ export function HeroSection() {
               : "JAN 2025" // Fallback to avoid shift
             }
           </span>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Marginalia - Side Notes */}
@@ -101,30 +140,21 @@ export function HeroSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-end pb-12 pt-12">
         {/* Left — name + CTA */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...SPRING, delay: shouldReduceMotion ? 0 : 0.1 }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
           className="pr-0 md:pr-12"
         >
-          <div className="flex items-center gap-4 mb-10 overflow-hidden">
-            <motion.div
-               initial={{ x: -40, opacity: 0 }}
-               animate={{ x: 0, opacity: 1 }}
-               transition={{ ...SPRING, delay: 0.8 }}
-               className="w-10 h-px bg-terracotta"
-            />
-            <motion.span
-               initial={{ y: 20, opacity: 0 }}
-               animate={{ y: 0, opacity: 0.45 }}
-               transition={{ ...SPRING, delay: 0.9 }}
-               className="mono-label"
-            >
+          <motion.div variants={itemVariants} className="flex items-center gap-4 mb-10 overflow-hidden">
+            <div className="w-10 h-px bg-terracotta" />
+            <span className="mono-label opacity-45">
               Full-Stack Software Engineer
-            </motion.span>
-          </div>
+            </span>
+          </motion.div>
 
-          <h1
-            className="font-playfair font-black leading-[0.85] tracking-[-0.06em] mb-4"
+          <motion.h1
+            variants={inkPressVariants}
+            className="font-playfair font-black leading-[0.85] tracking-[-0.06em] mb-4 origin-top"
             style={{ fontSize: "clamp(5rem, 12vw, 12rem)" }}
           >
             <motion.span style={{ y: y1 }} className="block">
@@ -133,19 +163,17 @@ export function HeroSection() {
             <motion.span style={{ y: y2 }} className="hollow-text block">
               {content.lastName}
             </motion.span>
-          </h1>
+          </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.45 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="font-playfair italic mb-10 tracking-tight"
+            variants={itemVariants}
+            className="font-playfair italic mb-10 tracking-tight opacity-45"
             style={{ fontSize: "clamp(1.2rem, 2.5vw, 2rem)", lineHeight: 1.1 }}
           >
             {content.role}
           </motion.p>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4">
             <MagneticButton
               href="#projects"
               className="mono-label inline-block px-8 py-3 bg-terracotta text-paper border border-terracotta hover:bg-ink hover:border-ink transition-colors duration-200"
@@ -158,14 +186,14 @@ export function HeroSection() {
             >
               Get in Touch
             </MagneticButton>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Right — summary + stats */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...SPRING, delay: shouldReduceMotion ? 0 : 0.3 }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
           className="border-l border-ink/10 pl-8 md:pl-16 mt-12 md:mt-0 relative"
         >
           {/* Vertical indicator for summary */}
@@ -173,16 +201,17 @@ export function HeroSection() {
             initial={{ height: 0 }}
             whileInView={{ height: 48 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 1, ease: "circOut" }}
+            transition={{ duration: 1, delay: 1.2, ease: "circOut" }}
             className="absolute left-0 top-0 w-[2px] bg-terracotta"
           />
 
-          <p
+          <motion.p
+            variants={itemVariants}
             className="font-cormorant opacity-75 leading-[1.85] mb-12"
             style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.45rem)" }}
           >
             {content.summary}
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-12">
             {[
@@ -190,12 +219,10 @@ export function HeroSection() {
               { num: "200+", label: "Institutions Served" },
               { num: "5",    label: "Live Projects Shipped" },
               { num: "Full", label: "Stack, Front to Back" },
-            ].map(({ num, label }, i) => (
+            ].map(({ num, label }) => (
               <motion.div
                 key={label}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ ...SPRING, delay: 1.4 + (i * 0.1) }}
+                variants={itemVariants}
                 className="relative pt-6"
               >
                 <div className="absolute top-0 left-0 w-full h-px bg-terracotta/40" />
