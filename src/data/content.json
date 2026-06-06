@@ -11,7 +11,11 @@
       "At IOSYSTEMS, I became the sole developer on two production systems — a nationwide library management platform used by 200+ institutions and a full agricultural logistics suite with RFID/IoT integrations, geospatial mapping, and two Flutter mobile apps I built from scratch.",
       "I work directly with clients, translate ambiguous requirements into clean architecture, and deliver across the full stack without needing the problem pre-solved for me.",
       "Outside of client work, I build portfolio projects to push my frontend ceiling: GPU-accelerated audio visualisers, AI-powered job matching platforms, and cinematic UI experiments."
-    ]
+    ],
+    "marginalia": {
+      "RFID/IoT integrations": { "number": "01", "note": "Utilizing LLRP protocols and low-latency socket connections for real-time livestock tracking." },
+      "GPU-accelerated": { "number": "02", "note": "Custom GLSL shaders bypassing React reconciliation for 60fps visual performance." }
+    }
   },
 
   "skills": [
@@ -70,7 +74,10 @@
         "Developed a geospatial mapping app using PostGIS and .NET, rendering South African Surveyor General polygon data.",
         "Designed and maintained RESTful APIs across PostgreSQL, MSSQL, and PostGIS.",
         "Engaged directly with clients to gather requirements; maintained CI/CD pipelines throughout."
-      ]
+      ],
+      "marginalia": {
+        "PostGIS": { "number": "03", "note": "Optimizing spatial queries for thousands of SG polygon datasets using GiST indexing." }
+      }
     },
     {
       "company": "Coega Development Corporation",

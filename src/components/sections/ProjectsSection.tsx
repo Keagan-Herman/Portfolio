@@ -73,16 +73,32 @@ export function ProjectsSection() {
 
               >
                 {/* Framer Motion Shared Hover Background */}
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {hoveredId === project.id && (
                     <motion.div
                       layoutId="project-hover"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="absolute inset-0 bg-[#ece6d8] z-0"
+                      className="absolute inset-0 z-0 bg-[#ece6d8]"
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    />
+                    >
+                      {/* Blueprint Grid Overlay */}
+                      <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <pattern id={`grid-${project.id}`} width="40" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                          </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill={`url(#grid-${project.id})`} />
+                        <motion.circle
+                          initial={{ r: 0 }}
+                          animate={{ r: 100 }}
+                          transition={{ duration: 1.5, ease: "easeOut" }}
+                          cx="50%" cy="50%" fill="none" stroke="currentColor" strokeWidth="0.2" strokeDasharray="4 4"
+                        />
+                      </svg>
+                    </motion.div>
                   )}
                 </AnimatePresence>
 
@@ -135,39 +151,43 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Technical Specification Sidebar (Desktop Only) */}
-                <div className="relative z-10 hidden md:flex flex-col border-l border-ink/10 p-8 justify-between bg-ink/[0.01] group-hover:bg-ink/[0.03] transition-colors">
-                   <div className="space-y-6">
-                      <div className="space-y-1">
-                        <span className="mono-label text-[0.55rem] opacity-30 block">Deployment Status</span>
-                        <div className="flex items-center gap-2">
+                <div className="relative z-10 hidden md:flex flex-col border-l border-ink/10 p-8 justify-between bg-ink/[0.01] group-hover:bg-ink/[0.03] transition-colors backdrop-blur-[2px]">
+                   <div className="space-y-8">
+                      <div className="space-y-2">
+                        <span className="mono-label text-[0.55rem] opacity-30 block tracking-[0.2em]">Deployment Status</span>
+                        <div className="flex items-center gap-3 bg-paper/30 p-2 border border-ink/5">
                            <div className={`w-1.5 h-1.5 rounded-full ${project.status === 'Live' ? 'bg-terracotta animate-pulse' : 'bg-ink/20'}`} />
-                           <span className={`mono-label text-[0.65rem] ${project.status === 'Live' ? 'text-terracotta font-bold' : 'opacity-40'}`}>
+                           <span className={`mono-label text-[0.65rem] ${project.status === 'Live' ? 'text-terracotta font-black' : 'opacity-40'}`}>
                              {project.status.toUpperCase()}
                            </span>
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <span className="mono-label text-[0.55rem] opacity-30 block">Primary Stack</span>
-                        <div className="flex flex-col gap-1">
-                          {project.tags.slice(0, 3).map(tag => (
-                            <span key={tag} className="mono-label text-[0.6rem] opacity-60 truncate">• {tag}</span>
+                      <div className="space-y-3">
+                        <span className="mono-label text-[0.55rem] opacity-30 block tracking-[0.2em]">Build Specification</span>
+                        <div className="flex flex-col gap-2">
+                          {project.tags.slice(0, 4).map(tag => (
+                            <div key={tag} className="flex items-center justify-between border-b border-ink/5 pb-1">
+                               <span className="mono-label text-[0.6rem] opacity-60 truncate">{tag}</span>
+                               <span className="mono-label text-[0.5rem] opacity-20">V.01</span>
+                            </div>
                           ))}
                         </div>
                       </div>
                    </div>
 
                    <div className="flex justify-between items-end">
-                      <div className="mono-label text-[0.5rem] opacity-10">
-                        AUDIT_{project.id.toUpperCase()}<br />
-                        VER_2025.01
+                      <div className="mono-label text-[0.5rem] opacity-10 leading-relaxed font-bold">
+                        ARTIFACT_ID: {project.id.toUpperCase()}<br />
+                        TIMESTAMP: 2025_REV_A
                       </div>
-                      <span
-                        className="text-2xl opacity-10 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 text-terracotta"
+                      <motion.span
+                        whileHover={{ x: 3, y: -3 }}
+                        className="text-2xl opacity-10 group-hover:opacity-100 transition-opacity duration-300 text-terracotta"
                         style={{ opacity: isLinked ? undefined : 0.04 }}
                       >
                         ↗
-                      </span>
+                      </motion.span>
                    </div>
                 </div>
               </Wrapper>

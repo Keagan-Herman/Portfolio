@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
+import { Marginalia } from "@/components/ui/Marginalia";
 
 const content = contentData as Content;
 
@@ -111,26 +112,51 @@ export function AboutSection() {
 
           {/* Body paragraphs */}
           <div className="space-y-8">
-            {content.about.body.map((paragraph, i) => (
-              <motion.p
-                variants={{
-                  hidden: { opacity: 0, y: 15 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
-                }}
-                key={i}
-                className="font-cormorant text-paper/75 leading-[1.9]"
-                style={{ fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)" }}
-              >
-                {i === 0 ? (
-                  <>
-                    <span className="float-left text-[4.5rem] leading-[0.8] font-playfair font-black pr-4 pt-1 text-terracotta select-none">
-                      {paragraph.charAt(0)}
-                    </span>
-                    {paragraph.slice(1)}
-                  </>
-                ) : paragraph}
-              </motion.p>
-            ))}
+            {content.about.body.map((paragraph, i) => {
+              const renderWithMarginalia = (text: string) => {
+                const marginalia = content.about.marginalia;
+                if (!marginalia) return text;
+                const keys = Object.keys(marginalia);
+                const pattern = new RegExp(`(${keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+                const parts = text.split(pattern);
+                return parts.map((part, idx) => {
+                  if (marginalia[part]) {
+                    return (
+                      <Marginalia
+                        key={idx}
+                        id={part.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
+                        number={marginalia[part].number}
+                        note={marginalia[part].note}
+                      >
+                        {part}
+                      </Marginalia>
+                    );
+                  }
+                  return part;
+                });
+              };
+
+              return (
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+                  }}
+                  key={i}
+                  className="font-cormorant text-paper/75 leading-[1.9]"
+                  style={{ fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)" }}
+                >
+                  {i === 0 ? (
+                    <>
+                      <span className="float-left text-[4.5rem] leading-[0.8] font-playfair font-black pr-4 pt-1 text-terracotta select-none">
+                        {paragraph.charAt(0)}
+                      </span>
+                      {renderWithMarginalia(paragraph.slice(1))}
+                    </>
+                  ) : renderWithMarginalia(paragraph)}
+                </motion.p>
+              );
+            })}
           </div>
         </motion.div>
       </div>

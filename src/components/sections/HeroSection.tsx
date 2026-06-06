@@ -35,14 +35,16 @@ const inkPressVariants = {
   hidden: {
     clipPath: "inset(0% 0% 100% 0%)",
     opacity: 0,
+    filter: "blur(8px) contrast(150%)",
     scale: 1.02,
   },
   visible: {
     clipPath: "inset(0% 0% 0% 0%)",
     opacity: 1,
+    filter: "blur(0px) contrast(100%)",
     scale: 1,
     transition: {
-      duration: 1.5,
+      duration: 2.5,
       ease: [0.19, 1, 0.22, 1] as const,
       delay: 0.5,
     },
@@ -82,14 +84,26 @@ export function HeroSection() {
         style={{ opacity }}
         className="flex justify-between items-center py-8 border-b border-ink/10 relative"
       >
-        <div className="flex gap-12">
+        <div className="flex gap-12 items-center">
+          <div className="flex items-center gap-4">
+             <div className="flex flex-col gap-0.5">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-[2px] bg-ink" style={{ width: `${[12, 18, 14, 22, 16, 20][i]}px`, opacity: 0.2 }} />
+                ))}
+             </div>
+             <motion.div variants={itemVariants} className="space-y-1">
+                <span className="mono-label block opacity-30 text-[0.6rem] leading-none">ISSN</span>
+                <span className="mono-label block font-bold leading-none">2025-481X</span>
+             </motion.div>
+          </div>
+
           <motion.div variants={itemVariants} className="space-y-1">
-            <span className="mono-label block opacity-30 text-[0.6rem]">Volume</span>
-            <span className="mono-label block font-bold">No. 01 — Portfolio</span>
+            <span className="mono-label block opacity-30 text-[0.6rem] leading-none">Volume</span>
+            <span className="mono-label block font-bold leading-none">No. 01 — Portfolio</span>
           </motion.div>
           <motion.div variants={itemVariants} className="hidden md:block space-y-1">
-            <span className="mono-label block opacity-30 text-[0.6rem]">Location</span>
-            <span className="mono-label block">Port Elizabeth, SA</span>
+            <span className="mono-label block opacity-30 text-[0.6rem] leading-none">Classification</span>
+            <span className="mono-label block leading-none">Technical Monograph</span>
           </motion.div>
         </div>
 
