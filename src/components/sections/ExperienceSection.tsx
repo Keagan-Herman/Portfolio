@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
+import { Marginalia } from "@/components/ui/Marginalia";
 
 const content = contentData as Content;
 
@@ -138,7 +139,28 @@ export function ExperienceSection() {
                         <div className="w-px h-full bg-ink/5 group-hover/item:bg-terracotta/30 transition-colors" />
                       </div>
                       <p className="flex-1 group-hover/item:text-ink transition-colors">
-                        {point}
+                        {(() => {
+                          const marginalia = item.marginalia;
+                          if (!marginalia) return point;
+                          const keys = Object.keys(marginalia);
+                          const pattern = new RegExp(`(${keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+                          const parts = point.split(pattern);
+                          return parts.map((part, idx) => {
+                            if (marginalia[part]) {
+                              return (
+                                <Marginalia
+                                  key={idx}
+                                  id={part.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
+                                  number={marginalia[part].number}
+                                  note={marginalia[part].note}
+                                >
+                                  {part}
+                                </Marginalia>
+                              );
+                            }
+                            return part;
+                          });
+                        })()}
                       </p>
                     </li>
                   ))}

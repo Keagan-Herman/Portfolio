@@ -14,6 +14,7 @@ export interface ExperienceItem {
   period: string;
   description: string;
   highlights: string[];
+  marginalia?: Record<string, { number: string; note: string }>;
 }
 
 // ─── Projects ────────────────────────────────────────────────────────────────
@@ -40,6 +41,7 @@ export interface About {
   headline: string;
   callout: string;
   body: string[];
+  marginalia?: Record<string, { number: string; note: string }>;
 }
 
 // ─── Contact ─────────────────────────────────────────────────────────────────
