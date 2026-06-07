@@ -74,7 +74,7 @@ export function HeroSection() {
     <header
       id="hero"
       ref={containerRef}
-      className="relative z-10 min-h-screen grid grid-rows-[auto_1fr_auto] px-8 md:px-24"
+      className="relative z-10 min-h-screen grid grid-rows-[auto_1fr_auto] px-8 md:px-24 pt-[calc(var(--spacing-grid)*2)]"
     >
       {/* Editorial Masthead Top Bar */}
       <motion.div
@@ -82,7 +82,7 @@ export function HeroSection() {
         animate="visible"
         variants={containerVariants}
         style={{ opacity }}
-        className="flex justify-between items-center py-8 border-b border-ink/10 relative"
+        className="flex justify-between items-center py-[var(--spacing-half)] border-b border-ink/10 relative"
       >
         <div className="flex gap-12 items-center">
           <div className="flex items-center gap-4">

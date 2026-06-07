@@ -21,7 +21,7 @@ export function AboutSection() {
     <section
       id="about"
       ref={containerRef}
-      className="relative z-10 bg-ink text-paper py-24 md:py-40 px-8 md:px-24 overflow-hidden"
+      className="relative z-10 bg-ink text-paper py-[calc(var(--spacing-grid)*3)] md:py-[calc(var(--spacing-grid)*5)] px-8 md:px-24 overflow-hidden"
     >
       {/* Ink Spread Entry Animation */}
       <motion.div

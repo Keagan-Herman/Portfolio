@@ -8,6 +8,7 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [hoverType, setHoverType] = useState<string | null>(null);
   const [magneticElement, setMagneticElement] = useState<HTMLElement | null>(null);
 
   const mouseX = useMotionValue(0);
@@ -53,8 +54,10 @@ export function CustomCursor() {
       const target = e.target as HTMLElement;
       const interactive = target.closest('a, button, [data-hover]');
       const magnetic = target.closest('[data-magnetic]');
+      const marginalia = target.closest('.group\\/marginalia');
 
-      setIsHovering(!!interactive);
+      setIsHovering(!!interactive || !!marginalia);
+      setHoverType(marginalia ? 'info' : null);
       setMagneticElement(magnetic as HTMLElement);
     };
 
@@ -93,8 +96,8 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          width: isHovering ? 80 : 32,
-          height: isHovering ? 80 : 32,
+          width: isHovering ? (hoverType === 'info' ? 60 : 80) : 32,
+          height: isHovering ? (hoverType === 'info' ? 60 : 80) : 32,
           opacity: isVisible ? 1 : 0,
           scale: isClicking ? 0.8 : 1,
           borderWidth: isHovering ? "1px" : "1.5px",
@@ -145,7 +148,7 @@ export function CustomCursor() {
 
       {/* Magnetic Label (Experimental) */}
       <AnimatePresence>
-        {isHovering && magneticElement && (
+        {isHovering && (magneticElement || hoverType === 'info') && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -158,7 +161,7 @@ export function CustomCursor() {
             }}
             className="absolute top-0 left-0 mono-label text-[8px] text-terracotta bg-paper/80 px-1 py-0.5"
           >
-            SELECT
+            {hoverType === 'info' ? 'INFO' : 'SELECT'}
           </motion.div>
         )}
       </AnimatePresence>
