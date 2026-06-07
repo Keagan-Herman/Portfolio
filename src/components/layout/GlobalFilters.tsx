@@ -11,14 +11,15 @@ export function GlobalFilters() {
         <filter id="ink-bleed">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.04"
-            numOctaves="3"
+            baseFrequency="0.03"
+            numOctaves="4"
+            seed="5"
             result="noise"
           />
           <feDisplacementMap
             in="SourceGraphic"
             in2="noise"
-            scale="2"
+            scale="2.5"
             xChannelSelector="R"
             yChannelSelector="G"
             result="displaced"

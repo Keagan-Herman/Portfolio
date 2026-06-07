@@ -8,6 +8,17 @@
   --color-terracotta: #c8381a;
   --color-paper: #f4efe4;
   --color-ink: #111009;
+
+  --spacing-grid: 3rem;
+  --spacing-half: 1.5rem;
+}
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility translate-z-* {
+  transform: translateZ(var(--value));
 }
 
 :root {

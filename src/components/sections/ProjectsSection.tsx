@@ -86,18 +86,38 @@ export function ProjectsSection() {
                       {/* Blueprint Grid Overlay */}
                       <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                          <pattern id={`grid-${project.id}`} width="40" height="40" patternUnits="userSpaceOnUse">
-                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                          <pattern id={`grid-${project.id}`} width="48" height="48" patternUnits="userSpaceOnUse">
+                            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" strokeWidth="0.5"/>
                           </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill={`url(#grid-${project.id})`} />
                         <motion.circle
                           initial={{ r: 0 }}
-                          animate={{ r: 100 }}
+                          animate={{ r: 120 }}
                           transition={{ duration: 1.5, ease: "easeOut" }}
                           cx="50%" cy="50%" fill="none" stroke="currentColor" strokeWidth="0.2" strokeDasharray="4 4"
                         />
                       </svg>
+
+                      {/* Architectural Measurements */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 mono-label text-[10px] [writing-mode:vertical-lr] rotate-180 opacity-40"
+                        >
+                          H: 100%_SPEC
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 }}
+                          className="absolute top-4 left-1/2 -translate-x-1/2 mono-label text-[10px] opacity-40"
+                        >
+                          W: 100%_BOUND
+                        </motion.div>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -114,7 +134,10 @@ export function ProjectsSection() {
 
                 {/* Body */}
                 <div className="relative z-10 p-6 md:p-8 flex flex-col gap-4">
-                  <div>
+                  <motion.div
+                    animate={hoveredId === project.id ? { y: -5 } : { y: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
                     <h3
                       className="font-playfair font-bold leading-none mb-2 group-hover:text-terracotta transition-colors duration-200"
                       style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
@@ -147,7 +170,7 @@ export function ProjectsSection() {
                         <span className="text-terracotta text-sm leading-none">↗</span>
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Technical Specification Sidebar (Desktop Only) */}

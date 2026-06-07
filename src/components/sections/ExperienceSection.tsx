@@ -21,7 +21,7 @@ export function ExperienceSection() {
     <section
       id="experience"
       ref={containerRef}
-      className="relative z-10 bg-[#ece6d8] py-24 md:py-40 px-8 md:px-24"
+      className="relative z-10 bg-[#ece6d8] py-[calc(var(--spacing-grid)*3)] md:py-[calc(var(--spacing-grid)*5)] px-8 md:px-24"
     >
       <div className="max-w-screen-xl mx-auto">
 
