@@ -128,5 +128,13 @@
       { "label": "GitHub",   "detail": "github.com/Keagan-Herman",        "url": "https://github.com/Keagan-Herman" },
       { "label": "Phone",    "detail": "067 078 5854 · Port Elizabeth, SA",    "url": "tel:0670785854" }
     ]
+  },
+
+  "metadata": {
+    "folds": {
+      "top": { "label": "EDITORIAL_ROOT", "ref": "FOLD_LINE_01" },
+      "mid": { "label": "SYSTEM_TRANSITION", "ref": "FOLD_LINE_02" },
+      "bottom": { "label": "TECHNICAL_FOOT", "ref": "FOLD_LINE_03" }
+    }
   }
 }

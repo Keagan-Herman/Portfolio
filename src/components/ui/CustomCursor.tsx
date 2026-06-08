@@ -99,7 +99,7 @@ export function CustomCursor() {
           width: isHovering ? (hoverType === 'info' ? 60 : 80) : 32,
           height: isHovering ? (hoverType === 'info' ? 60 : 80) : 32,
           opacity: isVisible ? 1 : 0,
-          scale: isClicking ? 0.8 : 1,
+          scale: isClicking ? 0.85 : 1,
           borderWidth: isHovering ? "1px" : "1.5px",
         }}
         transition={{
@@ -140,7 +140,7 @@ export function CustomCursor() {
         }}
         animate={{
           opacity: isVisible ? 1 : 0,
-          scale: isHovering ? 0 : isClicking ? 1.5 : 1,
+          scale: isHovering ? 0 : isClicking ? 0.6 : 1,
           backgroundColor: isClicking ? "var(--color-ink)" : "var(--color-terracotta)",
         }}
         className="w-1.5 h-1.5 rounded-full absolute top-0 left-0 shadow-[0_0_10px_rgba(200,56,26,0.2)]"

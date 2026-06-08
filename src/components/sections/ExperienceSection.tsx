@@ -118,8 +118,27 @@ export function ExperienceSection() {
                 </h3>
 
                 <div className="flex items-center gap-2">
-                  <div className="w-1 h-1 rounded-full bg-terracotta" />
-                  <div className="mono-label text-[0.6rem] opacity-30 uppercase tracking-tighter">Verified Employment Record</div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.5 + i * 0.1 }}
+                    className="w-1 h-1 rounded-full bg-terracotta"
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.5, rotate: -5 }}
+                    whileInView={{ opacity: 0.3, scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.4,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 0.6 + i * 0.1,
+                      scale: { type: "spring", stiffness: 400, damping: 15 }
+                    }}
+                    className="mono-label text-[0.6rem] uppercase tracking-tighter"
+                  >
+                    Verified Employment Record
+                  </motion.div>
                 </div>
               </div>
 
@@ -168,11 +187,22 @@ export function ExperienceSection() {
 
                 {/* Stamp Effect for Present role */}
                 {item.period.includes("Present") && (
-                  <div className="absolute -top-6 -right-4 md:-right-12 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-500 rotate-12">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 2, rotate: 25 }}
+                    whileInView={{ opacity: 0.2, scale: 1, rotate: 12 }}
+                    viewport={{ once: true }}
+                    whileHover={{ opacity: 0.4, scale: 1.05 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.8,
+                      scale: { type: "spring", stiffness: 300, damping: 15 }
+                    }}
+                    className="absolute -top-6 -right-4 md:-right-12 pointer-events-none transition-opacity duration-500"
+                  >
                     <div className="border-2 border-terracotta rounded-sm px-3 py-1 text-terracotta font-playfair font-bold text-xs uppercase tracking-widest whitespace-nowrap">
                       Active Deployment
                     </div>
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </motion.div>
