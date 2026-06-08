@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import contentData from "@/data/content.json";
 import { Content } from "@/types/content";
 
@@ -10,8 +10,31 @@ const content = contentData as Content;
 export function ProjectsSection() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
+
+  const gridX = useTransform(springX, [0, 1], [-15, 15]);
+  const gridY = useTransform(springY, [0, 1], [-15, 15]);
+
+  const labelX = useTransform(springX, [0, 1], [-30, 30]);
+  const labelY = useTransform(springY, [0, 1], [-30, 30]);
+
+  const numX = useTransform(springX, [0, 1], [10, -10]);
+  const numY = useTransform(springY, [0, 1], [10, -10]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
   return (
-    <section id="projects" className="relative z-10 py-24 md:py-40 px-8 md:px-24">
+    <section id="projects" className="relative z-10 py-24 md:py-40 px-8 md:px-24" onMouseMove={handleMouseMove}>
       <div className="max-w-screen-xl mx-auto">
 
         {/* Header */}
@@ -84,7 +107,11 @@ export function ProjectsSection() {
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
                       {/* Blueprint Grid Overlay */}
-                      <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+                      <motion.svg
+                        style={{ x: gridX, y: gridY }}
+                        className="absolute inset-0 w-full h-full opacity-10"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <defs>
                           <pattern id={`grid-${project.id}`} width="48" height="48" patternUnits="userSpaceOnUse">
                             <path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" strokeWidth="0.5"/>
@@ -97,10 +124,13 @@ export function ProjectsSection() {
                           transition={{ duration: 1.5, ease: "easeOut" }}
                           cx="50%" cy="50%" fill="none" stroke="currentColor" strokeWidth="0.2" strokeDasharray="4 4"
                         />
-                      </svg>
+                      </motion.svg>
 
                       {/* Architectural Measurements */}
-                      <div className="absolute inset-0 pointer-events-none">
+                      <motion.div
+                        style={{ x: labelX, y: labelY }}
+                        className="absolute inset-0 pointer-events-none"
+                      >
                         <motion.div
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -117,19 +147,19 @@ export function ProjectsSection() {
                         >
                           W: 100%_BOUND
                         </motion.div>
-                      </div>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
                 {/* Number column */}
                 <div className="relative z-10 border-r border-ink/10 flex flex-col items-center justify-start p-4 md:p-6 pt-8">
-                  <span
-                    className="font-playfair font-black opacity-10 group-hover:opacity-100 group-hover:text-terracotta transition-all duration-500"
-                    style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1 }}
+                  <motion.span
+                    style={{ x: numX, y: numY, fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: 1 }}
+                    className="font-playfair font-black opacity-10 group-hover:opacity-100 group-hover:text-terracotta transition-all duration-500 block"
                   >
                     {String(i + 1).padStart(2, "0")}
-                  </span>
+                  </motion.span>
                 </div>
 
                 {/* Body */}

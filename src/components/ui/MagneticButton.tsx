@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useSpring, useMotionValue } from "framer-motion";
-import { useRef } from "react";
+import { motion, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -12,6 +12,7 @@ interface MagneticButtonProps {
 
 export function MagneticButton({ children, className, href, onClick }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -37,21 +38,45 @@ export function MagneticButton({ children, className, href, onClick }: MagneticB
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
+    setIsHovered(false);
   };
 
   const content = (
     <motion.div
       ref={ref}
-      onMouseMove={handleMouseMove}
+      onMouseMove={(e) => {
+        handleMouseMove(e);
+        setIsHovered(true);
+      }}
       onMouseLeave={handleMouseLeave}
       style={{
         x: springX,
         y: springY,
       }}
-      className="relative z-10"
+      className="relative z-10 overflow-hidden"
       data-magnetic
     >
-      {children}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1.5, opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 z-0 bg-ink/10 rounded-full pointer-events-none"
+            style={{
+              filter: "url(#ink-bleed)",
+              left: "10%",
+              top: "10%",
+              width: "80%",
+              height: "80%"
+            }}
+          />
+        )}
+      </AnimatePresence>
+      <div className="relative z-10">
+        {children}
+      </div>
     </motion.div>
   );
 

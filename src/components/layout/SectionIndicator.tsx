@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 
 const sections = [
-  { id: "hero", label: "01" },
-  { id: "about", label: "02" },
-  { id: "skills", label: "03" },
-  { id: "experience", label: "04" },
-  { id: "projects", label: "05" },
-  { id: "education", label: "06" },
-  { id: "contact", label: "07" },
+  { id: "hero", label: "01", chapterTitle: "MASTHEAD" },
+  { id: "about", label: "02", chapterTitle: "BIOGRAPHY" },
+  { id: "skills", label: "03", chapterTitle: "TECHNICAL INDEX" },
+  { id: "experience", label: "04", chapterTitle: "TECHNICAL DOSSIER" },
+  { id: "projects", label: "05", chapterTitle: "PROJECT MANIFEST" },
+  { id: "education", label: "06", chapterTitle: "ACADEMIC RECORD" },
+  { id: "contact", label: "07", chapterTitle: "CORRESPONDENCE" },
 ];
 
 export function SectionIndicator() {
@@ -85,9 +85,22 @@ export function SectionIndicator() {
           className="absolute right-full mr-4 -translate-y-1/2 whitespace-nowrap hidden lg:block"
         >
           <div className="flex items-center gap-3">
-             <span className="mono-label text-[10px] text-terracotta font-black tracking-[0.2em] bg-paper/80 px-2 py-0.5 backdrop-blur-sm border border-terracotta/10">
-               {sections.find(s => s.id === activeSection)?.label || "01"}
-             </span>
+             <div className="flex flex-col items-end">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={activeSection}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    className="mono-label text-[8px] text-terracotta/60 font-bold tracking-[0.2em]"
+                  >
+                    {sections.find(s => s.id === activeSection)?.chapterTitle}
+                  </motion.span>
+                </AnimatePresence>
+                <span className="mono-label text-[10px] text-terracotta font-black tracking-[0.2em] bg-paper/80 px-2 py-0.5 backdrop-blur-sm border border-terracotta/10 mt-1">
+                  {sections.find(s => s.id === activeSection)?.label || "01"}
+                </span>
+             </div>
              <div className="h-px w-8 bg-terracotta/20" />
           </div>
         </motion.div>
